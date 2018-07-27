@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Sketch` struct in crate `sdl2sketch`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Sketch">
+
+    <title>sdl2sketch::Sketch - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle">
+    
+    <link rel="stylesheet" type="text/css" href="../dark.css">
+    <link rel="stylesheet" type="text/css" href="../main.css" id="themeStyle">
+    <script src="../storage.js"></script>
+    
+
+    
+    
+</head>
+<body class="rustdoc struct">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        <div class="sidebar-menu">&#9776;</div>
+        
+        <p class='location'>Struct Sketch</p><div class="sidebar-elems"><div class="block items"><a class="sidebar-title" href="#methods">Methods</a><div class="sidebar-links"><a href="#method.new">new</a><a href="#method.width">width</a><a href="#method.height">height</a><a href="#method.get_framerate">get_framerate</a><a href="#method.set_framerate">set_framerate</a><a href="#method.no_loop">no_loop</a><a href="#method.quit">quit</a><a href="#method.background">background</a><a href="#method.key_is_down">key_is_down</a><a href="#method.mouse_pos">mouse_pos</a><a href="#method.mouse_is_pressed">mouse_is_pressed</a><a href="#method.stroke">stroke</a><a href="#method.no_stroke">no_stroke</a><a href="#method.fill">fill</a><a href="#method.no_fill">no_fill</a><a href="#method.stroke_weight">stroke_weight</a><a href="#method.smooth">smooth</a><a href="#method.no_smooth">no_smooth</a><a href="#method.rect_mode">rect_mode</a><a href="#method.point">point</a><a href="#method.rect">rect</a><a href="#method.line">line</a><a href="#method.polygon">polygon</a><a href="#method.triangle">triangle</a><a href="#method.quad">quad</a><a href="#method.arc">arc</a><a href="#method.circle">circle</a><a href="#method.ellipse">ellipse</a></div></div><p class='location'><a href='index.html'>sdl2sketch</a></p><script>window.sidebarCurrent = {name: 'Sketch', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script></div>
+    </nav>
+
+    <div class="theme-picker">
+        <button id="theme-picker" aria-label="Pick another theme!">
+            <img src="../brush.svg" width="18" alt="Pick another theme!">
+        </button>
+        <div id="theme-choices"></div>
+    </div>
+    <script src="../theme.js"></script>
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>sdl2sketch</a>::<wbr><a class="struct" href=''>Sketch</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../src/sdl2sketch/lib.rs.html#161-176' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Sketch { /* fields omitted */ }</pre><div class='docblock'><p>This struct contains the necessary SDL2 subsystem objects and provides most of the API.</p>
+</div>
+                    <h2 id='methods' class='small-section-header'>
+                      Methods<a href='#methods' class='anchor'></a>
+                    </h2>
+                <h3 id='impl' class='impl'><span class='in-band'><code>impl <a class="struct" href="../sdl2sketch/struct.Sketch.html" title="struct sdl2sketch::Sketch">Sketch</a></code><a href='#impl' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#179-490' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.new' class="method"><span id='new.v' class='invisible'><code>pub fn <a href='#method.new' class='fnname'>new</a>(width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, title: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; Self</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#184-202' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>create a new sketch</p>
+</div><h4 id='method.width' class="method"><span id='width.v' class='invisible'><code>pub fn <a href='#method.width' class='fnname'>width</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#205-207' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>returns the width of the sketch in pixels</p>
+</div><h4 id='method.height' class="method"><span id='height.v' class='invisible'><code>pub fn <a href='#method.height' class='fnname'>height</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#210-212' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>returns the height of the sketch in pixels</p>
+</div><h4 id='method.get_framerate' class="method"><span id='get_framerate.v' class='invisible'><code>pub fn <a href='#method.get_framerate' class='fnname'>get_framerate</a>(&amp;mut self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#215-217' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>returns the current framerate in frames per second</p>
+</div><h4 id='method.set_framerate' class="method"><span id='set_framerate.v' class='invisible'><code>pub fn <a href='#method.set_framerate' class='fnname'>set_framerate</a>(&amp;mut self, fps: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#220-222' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>sets the max. framerate in frames per second</p>
+</div><h4 id='method.no_loop' class="method"><span id='no_loop.v' class='invisible'><code>pub fn <a href='#method.no_loop' class='fnname'>no_loop</a>(&amp;mut self, setting: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#232-234' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>stops and restarts the main loop</p>
+<p>In the p5.js API there are two functions for this, noLoop() and loop(). This does not work in rust since &quot;loop&quot; is a keyword, so a bool is needed as a parameter.</p>
+</div><h4 id='method.quit' class="method"><span id='quit.v' class='invisible'><code>pub fn <a href='#method.quit' class='fnname'>quit</a>(&amp;mut self)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#237-239' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>exits the main loop</p>
+</div><h4 id='method.background' class="method"><span id='background.v' class='invisible'><code>pub fn <a href='#method.background' class='fnname'>background</a>(&amp;mut self, color: Color)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#247-253' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>clears the sketch by filling the whole sketch with the provided color</p>
+</div><h4 id='method.key_is_down' class="method"><span id='key_is_down.v' class='invisible'><code>pub fn <a href='#method.key_is_down' class='fnname'>key_is_down</a>(&amp;self, code: Keycode) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#258-260' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>checks if the key with the provided keycode is currently pressed</p>
+</div><h4 id='method.mouse_pos' class="method"><span id='mouse_pos.v' class='invisible'><code>pub fn <a href='#method.mouse_pos' class='fnname'>mouse_pos</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#265-268' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>returns current x position of the mouse in pixel coordinates</p>
+<p>In the p5.js API there are two state variables for this (mouseX and mouseY). If the mouse pointer is outside the sketch window, the function returns last position of the mouse inside the window(!)</p>
+</div><h4 id='method.mouse_is_pressed' class="method"><span id='mouse_is_pressed.v' class='invisible'><code>pub fn <a href='#method.mouse_is_pressed' class='fnname'>mouse_is_pressed</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#271-274' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>checks if any mouse button is currently pressed</p>
+</div><h4 id='method.stroke' class="method"><span id='stroke.v' class='invisible'><code>pub fn <a href='#method.stroke' class='fnname'>stroke</a>(&amp;mut self, color: Color)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#279-282' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>After calling this function primitives will be drawn with an outline in the provided color.</p>
+</div><h4 id='method.no_stroke' class="method"><span id='no_stroke.v' class='invisible'><code>pub fn <a href='#method.no_stroke' class='fnname'>no_stroke</a>(&amp;mut self)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#285-287' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>After calling this function primitives will be drawn without outline.</p>
+</div><h4 id='method.fill' class="method"><span id='fill.v' class='invisible'><code>pub fn <a href='#method.fill' class='fnname'>fill</a>(&amp;mut self, color: Color)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#290-292' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>After calling this function primitives will be drawn filled in the provided color.</p>
+</div><h4 id='method.no_fill' class="method"><span id='no_fill.v' class='invisible'><code>pub fn <a href='#method.no_fill' class='fnname'>no_fill</a>(&amp;mut self)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#295-297' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>After calling this function primitives will be drawn without fill.</p>
+</div><h4 id='method.stroke_weight' class="method"><span id='stroke_weight.v' class='invisible'><code>pub fn <a href='#method.stroke_weight' class='fnname'>stroke_weight</a>(&amp;mut self, weight: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#300-302' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>After calling this function the outline of drawn primitives will be in the width of the provided stroke weight in pixels (provided stroke() is set).</p>
+</div><h4 id='method.smooth' class="method"><span id='smooth.v' class='invisible'><code>pub fn <a href='#method.smooth' class='fnname'>smooth</a>(&amp;mut self)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#305-307' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>After calling this function primitives will be drawn with anti-aliasing. (nicer outline but slower)</p>
+</div><h4 id='method.no_smooth' class="method"><span id='no_smooth.v' class='invisible'><code>pub fn <a href='#method.no_smooth' class='fnname'>no_smooth</a>(&amp;mut self)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#310-312' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>After calling this function primitives will be drawn without anti-aliasing. (rugged outline but faster)</p>
+</div><h4 id='method.rect_mode' class="method"><span id='rect_mode.v' class='invisible'><code>pub fn <a href='#method.rect_mode' class='fnname'>rect_mode</a>(&amp;mut self, mode: <a class="enum" href="../sdl2sketch/enum.RectMode.html" title="enum sdl2sketch::RectMode">RectMode</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#315-317' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>After calling this function the parameters of all subsequent calls to rect() will be interpreted according to the provided mode.</p>
+</div><h4 id='method.point' class="method"><span id='point.v' class='invisible'><code>pub fn <a href='#method.point' class='fnname'>point</a>(&amp;mut self, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#326-331' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>draws pixel-sized point at the provided coordinates</p>
+</div><h4 id='method.rect' class="method"><span id='rect.v' class='invisible'><code>pub fn <a href='#method.rect' class='fnname'>rect</a>(&amp;mut self, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, w: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, h: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#334-347' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>draws a rectangle</p>
+</div><h4 id='method.line' class="method"><span id='line.v' class='invisible'><code>pub fn <a href='#method.line' class='fnname'>line</a>(&amp;mut self, x1: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y1: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, x2: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y2: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#360-370' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>draws a line</p>
+</div><h4 id='method.polygon' class="method"><span id='polygon.v' class='invisible'><code>pub fn <a href='#method.polygon' class='fnname'>polygon</a>(&amp;mut self, vx32: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;[</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a>, vy32: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;[</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#375-411' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>draws a polygon (EXPERIMENTAL)</p>
+<p>SDL2-gfx API, not p5.js</p>
+</div><h4 id='method.triangle' class="method"><span id='triangle.v' class='invisible'><code>pub fn <a href='#method.triangle' class='fnname'>triangle</a>(&amp;mut self, x1: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y1: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, x2: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y2: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, x3: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y3: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#414-430' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>draws a triangle</p>
+</div><h4 id='method.quad' class="method"><span id='quad.v' class='invisible'><code>pub fn <a href='#method.quad' class='fnname'>quad</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;x1: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;y1: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;x2: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;y2: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;x3: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;y3: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;x4: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;y4: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><br>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#433-438' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>draws a quad (NOT COMPLETE)</p>
+</div><h4 id='method.arc' class="method"><span id='arc.v' class='invisible'><code>pub fn <a href='#method.arc' class='fnname'>arc</a>(&amp;mut self, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, r: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, start: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, end: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#446-450' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>draws arc (NOT COMPLETE)</p>
+<p>parameters are from SDL2-gfx API, not p5.js, (TODO)
+which means this is a circle arc not an ellipse arc and
+the start/end parameters are in DEG not RAD (TODO),
+fill option not available (TODO)</p>
+</div><h4 id='method.circle' class="method"><span id='circle.v' class='invisible'><code>pub fn <a href='#method.circle' class='fnname'>circle</a>(&amp;mut self, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, r: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#453-469' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>draws a circle</p>
+</div><h4 id='method.ellipse' class="method"><span id='ellipse.v' class='invisible'><code>pub fn <a href='#method.ellipse' class='fnname'>ellipse</a>(&amp;mut self, x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, w: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>, h: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/sdl2sketch/lib.rs.html#472-488' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>draws an ellipse</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt><kbd>?</kbd></dt>
+                    <dd>Show this help dialog</dd>
+                    <dt><kbd>S</kbd></dt>
+                    <dd>Focus the search field</dd>
+                    <dt><kbd>↑</kbd></dt>
+                    <dd>Move up in search results</dd>
+                    <dt><kbd>↓</kbd></dt>
+                    <dd>Move down in search results</dd>
+                    <dt><kbd>↹</kbd></dt>
+                    <dd>Switch tab</dd>
+                    <dt><kbd>&#9166;</kbd></dt>
+                    <dd>Go to active search result</dd>
+                    <dt><kbd>+</kbd></dt>
+                    <dd>Expand all sections</dd>
+                    <dt><kbd>-</kbd></dt>
+                    <dd>Collapse all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "sdl2sketch";
+    </script>
+    <script src="../main.js"></script>
+    <script defer src="../search-index.js"></script>
+</body>
+</html>
