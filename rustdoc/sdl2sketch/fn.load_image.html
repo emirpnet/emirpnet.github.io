@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="API documentation for the Rust `RectMode` enum in crate `sdl2sketch`.">
-    <meta name="keywords" content="rust, rustlang, rust-lang, RectMode">
+    <meta name="description" content="API documentation for the Rust `load_image` fn in crate `sdl2sketch`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, load_image">
 
-    <title>sdl2sketch::RectMode - Rust</title>
+    <title>sdl2sketch::load_image - Rust</title>
 
     <link rel="stylesheet" type="text/css" href="../normalize.css">
     <link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle">
@@ -20,7 +20,7 @@
     
     
 </head>
-<body class="rustdoc enum">
+<body class="rustdoc fn">
     <!--[if lte IE 8]>
     <div class="warning">
         This old browser is unsupported and will most likely display funky
@@ -33,7 +33,7 @@
     <nav class="sidebar">
         <div class="sidebar-menu">&#9776;</div>
         
-        <p class='location'>Enum RectMode</p><div class="sidebar-elems"><div class="block items"><a class="sidebar-title" href="#variants">Variants</a><div class="sidebar-links"><a href="#variant.CORNER">CORNER</a><a href="#variant.CORNERS">CORNERS</a><a href="#variant.CENTER">CENTER</a><a href="#variant.RADIUS">RADIUS</a></div></div><p class='location'><a href='index.html'>sdl2sketch</a></p><script>window.sidebarCurrent = {name: 'RectMode', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script></div>
+        <p class='location'><a href='index.html'>sdl2sketch</a></p><script>window.sidebarCurrent = {name: 'load_image', ty: 'fn', relpath: ''};</script><script defer src="sidebar-items.js"></script>
     </nav>
 
     <div class="theme-picker">
@@ -55,23 +55,12 @@
     </nav>
 
     <section id='main' class="content">
-<h1 class='fqn'><span class='in-band'>Enum <a href='index.html'>sdl2sketch</a>::<wbr><a class="enum" href=''>RectMode</a></span><span class='out-of-band'><span id='render-detail'>
+<h1 class='fqn'><span class='in-band'>Function <a href='index.html'>sdl2sketch</a>::<wbr><a class="fn" href=''>load_image</a></span><span class='out-of-band'><span id='render-detail'>
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../src/sdl2sketch/lib.rs.html#502-511' title='goto source code'>[src]</a></span></h1>
-<pre class='rust enum'>pub enum RectMode {
-    CORNER,
-    CORNERS,
-    CENTER,
-    RADIUS,
-}</pre><div class='docblock'><p>options for the interpretation of the parameters given to rect()</p>
-</div><h2 id='variants' class='variants small-section-header'>
-                   Variants<a href='#variants' class='anchor'></a></h2>
-<span id="variant.CORNER" class="variant small-section-header"><a href="#variant.CORNER" class="anchor field"></a><span id='CORNER.v' class='invisible'><code>CORNER</code></span></span><div class='docblock'><p>CORNER (default): Coordinates of the upper left corner (x, y), width (w) and height (h)</p>
-</div><span id="variant.CORNERS" class="variant small-section-header"><a href="#variant.CORNERS" class="anchor field"></a><span id='CORNERS.v' class='invisible'><code>CORNERS</code></span></span><div class='docblock'><p>CORNERS: Coordinates of the upper left corner (x, y) and the lower right corner (w, h)</p>
-</div><span id="variant.CENTER" class="variant small-section-header"><a href="#variant.CENTER" class="anchor field"></a><span id='CENTER.v' class='invisible'><code>CENTER</code></span></span><div class='docblock'><p>CENTER: Coordinates of the center (x, y), width (w) and height (h)</p>
-</div><span id="variant.RADIUS" class="variant small-section-header"><a href="#variant.RADIUS" class="anchor field"></a><span id='RADIUS.v' class='invisible'><code>RADIUS</code></span></span><div class='docblock'><p>RADIUS: Coordinates of the center (x, y), half width (w) and half height (h)</p>
+               </span><a class='srclink' href='../src/sdl2sketch/lib.rs.html#515-517' title='goto source code'>[src]</a></span></h1>
+<pre class='rust fn'>pub fn load_image(filename: &amp;<a class="struct" href="https://doc.rust-lang.org/nightly/std/path/struct.Path.html" title="struct std::path::Path">Path</a>) -&gt; Image</pre><div class='docblock'><p>loads an image from file (PNG or JPG)</p>
 </div></section>
     <section id='search' class="content hidden"></section>
 
