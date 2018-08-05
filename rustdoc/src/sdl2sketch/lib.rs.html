@@ -625,6 +625,65 @@
 <span id="569">569</span>
 <span id="570">570</span>
 <span id="571">571</span>
+<span id="572">572</span>
+<span id="573">573</span>
+<span id="574">574</span>
+<span id="575">575</span>
+<span id="576">576</span>
+<span id="577">577</span>
+<span id="578">578</span>
+<span id="579">579</span>
+<span id="580">580</span>
+<span id="581">581</span>
+<span id="582">582</span>
+<span id="583">583</span>
+<span id="584">584</span>
+<span id="585">585</span>
+<span id="586">586</span>
+<span id="587">587</span>
+<span id="588">588</span>
+<span id="589">589</span>
+<span id="590">590</span>
+<span id="591">591</span>
+<span id="592">592</span>
+<span id="593">593</span>
+<span id="594">594</span>
+<span id="595">595</span>
+<span id="596">596</span>
+<span id="597">597</span>
+<span id="598">598</span>
+<span id="599">599</span>
+<span id="600">600</span>
+<span id="601">601</span>
+<span id="602">602</span>
+<span id="603">603</span>
+<span id="604">604</span>
+<span id="605">605</span>
+<span id="606">606</span>
+<span id="607">607</span>
+<span id="608">608</span>
+<span id="609">609</span>
+<span id="610">610</span>
+<span id="611">611</span>
+<span id="612">612</span>
+<span id="613">613</span>
+<span id="614">614</span>
+<span id="615">615</span>
+<span id="616">616</span>
+<span id="617">617</span>
+<span id="618">618</span>
+<span id="619">619</span>
+<span id="620">620</span>
+<span id="621">621</span>
+<span id="622">622</span>
+<span id="623">623</span>
+<span id="624">624</span>
+<span id="625">625</span>
+<span id="626">626</span>
+<span id="627">627</span>
+<span id="628">628</span>
+<span id="629">629</span>
+<span id="630">630</span>
 </pre><pre class="rust ">
 <span class="doccomment">//! SDL2Sketch tries to simplify the use of [rust-sdl2](https://github.com/Rust-SDL2/rust-sdl2) by following the style of the [p5.js](https://p5js.org) API. It does not try to be a complete game engine, but just wants to make it as easy as possible to create visual applications in Rust without much boilerplate code. Code examples and the source code of SDL2Sketch can be found on its [GitHub page](https://github.com/emirpnet/sdl2sketch).</span>
 
@@ -754,7 +813,9 @@
 	<span class="ident">stroke_color</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Color</span><span class="op">&gt;</span>,
 	<span class="ident">stroke_weight</span>: <span class="ident">u8</span>,
 	<span class="ident">smooth</span>: <span class="ident">bool</span>,
+	<span class="ident">angle_mode</span>: <span class="ident">AngleMode</span>,
 	<span class="ident">rect_mode</span>: <span class="ident">RectMode</span>,
+	<span class="ident">image_mode</span>: <span class="ident">ImageMode</span>,
 	<span class="ident">canvas</span>: <span class="ident">Canvas</span><span class="op">&lt;</span><span class="ident">sdl2</span>::<span class="ident">video</span>::<span class="ident">Window</span><span class="op">&gt;</span>,
 	<span class="ident">event_pump</span>: <span class="ident">EventPump</span>,
 	<span class="ident">_image_context</span>: <span class="ident">Sdl2ImageContext</span>,
@@ -782,7 +843,9 @@
 			<span class="ident">stroke_color</span>: <span class="prelude-val">Some</span>(<span class="ident">Color</span>::<span class="ident">RGB</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>)),
 			<span class="ident">stroke_weight</span>: <span class="number">1</span>,
 			<span class="ident">smooth</span>: <span class="bool-val">true</span>,
+			<span class="ident">angle_mode</span>: <span class="ident">AngleMode</span>::<span class="ident">RADIANS</span>,
 			<span class="ident">rect_mode</span>: <span class="ident">RectMode</span>::<span class="ident">CORNER</span>,
+			<span class="ident">image_mode</span>: <span class="ident">ImageMode</span>::<span class="ident">CORNER</span>,
 			<span class="ident">canvas</span>,
 			<span class="ident">event_pump</span>,
 			<span class="ident">_image_context</span>: <span class="ident">image_context</span>,
@@ -908,9 +971,19 @@
 		<span class="self">self</span>.<span class="ident">smooth</span> <span class="op">=</span> <span class="bool-val">false</span>;
 	}
 
+	<span class="doccomment">/// After calling this function angle parameters of all subsequent function calls will be interpreted according to the provided mode.</span>
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">angle_mode</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">mode</span>: <span class="ident">AngleMode</span>) {
+		<span class="self">self</span>.<span class="ident">angle_mode</span> <span class="op">=</span> <span class="ident">mode</span>;
+	}
+
 	<span class="doccomment">/// After calling this function the parameters of all subsequent calls to rect() will be interpreted according to the provided mode.</span>
 	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rect_mode</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">mode</span>: <span class="ident">RectMode</span>) {
 		<span class="self">self</span>.<span class="ident">rect_mode</span> <span class="op">=</span> <span class="ident">mode</span>;
+	}
+
+	<span class="doccomment">/// After calling this function the parameters of all subsequent calls to image() will be interpreted according to the provided mode.</span>
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">image_mode</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">mode</span>: <span class="ident">ImageMode</span>) {
+		<span class="self">self</span>.<span class="ident">image_mode</span> <span class="op">=</span> <span class="ident">mode</span>;
 	}
 
 	<span class="comment">/* draw primitives */</span>
@@ -930,7 +1003,7 @@
 	<span class="doccomment">/// draws a rectangle</span>
 	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rect</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>, <span class="ident">w</span>: <span class="ident">u32</span>, <span class="ident">h</span>: <span class="ident">u32</span>) { <span class="comment">// TODO: u32 for w and h is a problem when in RectMode::CORNERS!</span>
 
-		<span class="kw">let</span> (<span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">w</span>, <span class="ident">h</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">rect_parameters</span>(<span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">w</span>, <span class="ident">h</span>);
+		<span class="kw">let</span> (<span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">w</span>, <span class="ident">h</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">rect_args</span>(<span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">w</span>, <span class="ident">h</span>);
 
 		<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">c</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">fill_color</span> {
 			<span class="self">self</span>.<span class="ident">canvas</span>.<span class="ident">set_draw_color</span>(<span class="ident">c</span>);
@@ -944,7 +1017,7 @@
 	}
 
 	<span class="doccomment">/// converts parameters for rect() accroding to setting of rect_mode</span>
-	<span class="kw">fn</span> <span class="ident">rect_parameters</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>, <span class="ident">w</span>: <span class="ident">u32</span>, <span class="ident">h</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">u32</span>, <span class="ident">u32</span>) {
+	<span class="kw">fn</span> <span class="ident">rect_args</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>, <span class="ident">w</span>: <span class="ident">u32</span>, <span class="ident">h</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">u32</span>, <span class="ident">u32</span>) {
 		<span class="kw">match</span> <span class="self">self</span>.<span class="ident">rect_mode</span> {
 			<span class="ident">RectMode</span>::<span class="ident">CORNER</span>  <span class="op">=&gt;</span> (<span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">w</span>, <span class="ident">h</span>),
 			<span class="ident">RectMode</span>::<span class="ident">CORNERS</span> <span class="op">=&gt;</span> (<span class="ident">x</span>, <span class="ident">y</span>, (<span class="ident">w</span> <span class="kw">as</span> <span class="ident">i32</span> <span class="op">-</span> <span class="ident">x</span>).<span class="ident">abs</span>() <span class="kw">as</span> <span class="ident">u32</span>, (<span class="ident">h</span> <span class="kw">as</span> <span class="ident">i32</span> <span class="op">-</span> <span class="ident">y</span>).<span class="ident">abs</span>() <span class="kw">as</span> <span class="ident">u32</span>), <span class="comment">// TODO: What happens with negative and mixed up coordinates?</span>
@@ -1035,27 +1108,28 @@
 	<span class="doccomment">/// ## TODO:</span>
 	<span class="doccomment">/// * this is a circle arc not an ellipse arc (parameters are from SDL2-gfx API, not p5.js)</span>
 	<span class="doccomment">/// * fill option not available</span>
-	<span class="doccomment">/// * start/end parameters are in DEG not RAD</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">arc</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>, <span class="ident">r</span>: <span class="ident">u32</span>, <span class="ident">start</span>: <span class="ident">i32</span>, <span class="ident">end</span>: <span class="ident">i32</span>) {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">arc</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>, <span class="ident">r</span>: <span class="ident">u32</span>, <span class="ident">start</span>: <span class="ident">f32</span>, <span class="ident">end</span>: <span class="ident">f32</span>) {
+		<span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">angle_arg</span>(<span class="ident">start</span>);
+		<span class="kw">let</span> <span class="ident">end</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">angle_arg</span>(<span class="ident">end</span>);
 		<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">c</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">stroke_color</span> {
 			<span class="self">self</span>.<span class="ident">canvas</span>.<span class="ident">arc</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">y</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">r</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">start</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">end</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">c</span>).<span class="ident">unwrap_or_else</span>( <span class="op">|</span><span class="ident">e</span><span class="op">|</span> { <span class="macro">eprintln</span><span class="macro">!</span>(<span class="string">&quot;SDL-gfx arc() failed. {}&quot;</span>, <span class="ident">e</span>); } );
 		}
 	}
 
-	<span class="doccomment">/// draws a pie *(NOT COMPLETE)*</span>
+	<span class="doccomment">/// draws a pie</span>
 	<span class="doccomment">///</span>
-	<span class="doccomment">/// SDL2-gfx API, not p5.js,</span>
 	<span class="doccomment">/// zero for start/end angles is to the right (not on top),</span>
 	<span class="doccomment">/// there is no smooth option (ignores setting)</span>
 	<span class="doccomment">///</span>
-	<span class="doccomment">/// ## TODO:</span>
-	<span class="doccomment">/// * start/end parameters are in DEG not RAD</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pie</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>, <span class="ident">r</span>: <span class="ident">u32</span>, <span class="ident">start</span>: <span class="ident">i32</span>, <span class="ident">end</span>: <span class="ident">i32</span>) {
+	<span class="doccomment">/// (SDL2-gfx API, not p5.js)</span>
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pie</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>, <span class="ident">r</span>: <span class="ident">u32</span>, <span class="ident">start</span>: <span class="ident">f32</span>, <span class="ident">end</span>: <span class="ident">f32</span>) {
+		<span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">angle_arg</span>(<span class="ident">start</span>).<span class="ident">round</span>() <span class="kw">as</span> <span class="ident">i16</span>;
+		<span class="kw">let</span> <span class="ident">end</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">angle_arg</span>(<span class="ident">end</span>).<span class="ident">round</span>() <span class="kw">as</span> <span class="ident">i16</span>;
 		<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">c</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">fill_color</span> {
-			<span class="self">self</span>.<span class="ident">canvas</span>.<span class="ident">filled_pie</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">y</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">r</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">start</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">end</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">c</span>).<span class="ident">unwrap_or_else</span>( <span class="op">|</span><span class="ident">e</span><span class="op">|</span> { <span class="macro">eprintln</span><span class="macro">!</span>(<span class="string">&quot;SDL-gfx filled_pie() failed. {}&quot;</span>, <span class="ident">e</span>); } );
+			<span class="self">self</span>.<span class="ident">canvas</span>.<span class="ident">filled_pie</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">y</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">r</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">start</span>, <span class="ident">end</span>, <span class="ident">c</span>).<span class="ident">unwrap_or_else</span>( <span class="op">|</span><span class="ident">e</span><span class="op">|</span> { <span class="macro">eprintln</span><span class="macro">!</span>(<span class="string">&quot;SDL-gfx filled_pie() failed. {}&quot;</span>, <span class="ident">e</span>); } );
 		}
 		<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">c</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">stroke_color</span> {
-			<span class="self">self</span>.<span class="ident">canvas</span>.<span class="ident">pie</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">y</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">r</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">start</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">end</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">c</span>).<span class="ident">unwrap_or_else</span>( <span class="op">|</span><span class="ident">e</span><span class="op">|</span> { <span class="macro">eprintln</span><span class="macro">!</span>(<span class="string">&quot;SDL-gfx pie() failed. {}&quot;</span>, <span class="ident">e</span>); } );
+			<span class="self">self</span>.<span class="ident">canvas</span>.<span class="ident">pie</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">y</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">r</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">start</span>, <span class="ident">end</span>, <span class="ident">c</span>).<span class="ident">unwrap_or_else</span>( <span class="op">|</span><span class="ident">e</span><span class="op">|</span> { <span class="macro">eprintln</span><span class="macro">!</span>(<span class="string">&quot;SDL-gfx pie() failed. {}&quot;</span>, <span class="ident">e</span>); } );
 		}
 	}
 
@@ -1092,24 +1166,14 @@
 			}
 		}
 	}
+
+	<span class="comment">/* draw images */</span>
 	
 	<span class="doccomment">/// displays an image at the given position (x,y) and size (w,h)</span>
 	<span class="doccomment">///</span>
 	<span class="doccomment">/// If w and/or h is 0 the original image width and/or height is used.</span>
 	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">image</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">img</span>: <span class="kw-2">&amp;</span><span class="ident">Image</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>, <span class="ident">w</span>: <span class="ident">u32</span>, <span class="ident">h</span>: <span class="ident">u32</span>) {
-		<span class="comment">// handle w and h argument</span>
-		<span class="kw">let</span> <span class="ident">width</span>;
-		<span class="kw">let</span> <span class="ident">height</span>;
-		<span class="kw">if</span> <span class="ident">w</span> <span class="op">==</span> <span class="number">0</span> {
-			<span class="ident">width</span> <span class="op">=</span> <span class="ident">img</span>.<span class="ident">width</span>();
-		} <span class="kw">else</span> {
-			<span class="ident">width</span> <span class="op">=</span> <span class="ident">w</span>;
-		}
-		<span class="kw">if</span> <span class="ident">h</span> <span class="op">==</span> <span class="number">0</span> {
-			<span class="ident">height</span> <span class="op">=</span> <span class="ident">img</span>.<span class="ident">height</span>();
-		} <span class="kw">else</span> {
-			<span class="ident">height</span> <span class="op">=</span> <span class="ident">h</span>;
-		}
+		<span class="kw">let</span> (<span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">w</span>, <span class="ident">h</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">image_args</span>(<span class="ident">img</span>, <span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">w</span>, <span class="ident">h</span>);
 
 		<span class="comment">// convert Surface to Texture</span>
 		<span class="comment">// TODO: check if this is a performance issue</span>
@@ -1120,22 +1184,76 @@
 		};
 
 		<span class="comment">// draw on canvas</span>
-		<span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">sdl2</span>::<span class="ident">rect</span>::<span class="ident">Rect</span>::<span class="ident">new</span>(<span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">width</span>, <span class="ident">height</span>);
+		<span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">sdl2</span>::<span class="ident">rect</span>::<span class="ident">Rect</span>::<span class="ident">new</span>(<span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">w</span>, <span class="ident">h</span>);
 		<span class="self">self</span>.<span class="ident">canvas</span>.<span class="ident">copy</span>(<span class="kw-2">&amp;</span><span class="ident">tex</span>, <span class="prelude-val">None</span>, <span class="ident">rect</span>).<span class="ident">unwrap_or_else</span>( <span class="op">|</span><span class="ident">e</span><span class="op">|</span> { <span class="macro">eprintln</span><span class="macro">!</span>(<span class="string">&quot;Drawing of image failed. {}&quot;</span>, <span class="ident">e</span>); } );
+	}
+
+	<span class="doccomment">/// converts parameters for rect() accroding to setting of rect_mode</span>
+	<span class="kw">fn</span> <span class="ident">image_args</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">img</span>: <span class="kw-2">&amp;</span><span class="ident">Image</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>, <span class="ident">width</span>: <span class="ident">u32</span>, <span class="ident">height</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">u32</span>, <span class="ident">u32</span>) {
+		
+		<span class="comment">// handle w and/or h == 0</span>
+		<span class="kw">let</span> <span class="ident">w</span>;
+		<span class="kw">let</span> <span class="ident">h</span>;
+		<span class="kw">if</span> <span class="ident">width</span> <span class="op">==</span> <span class="number">0</span> <span class="op">&amp;&amp;</span> (<span class="self">self</span>.<span class="ident">image_mode</span> <span class="op">==</span> <span class="ident">ImageMode</span>::<span class="ident">CORNER</span> <span class="op">||</span> <span class="self">self</span>.<span class="ident">image_mode</span> <span class="op">==</span> <span class="ident">ImageMode</span>::<span class="ident">CENTER</span>) {
+			<span class="ident">w</span> <span class="op">=</span> <span class="ident">img</span>.<span class="ident">width</span>();
+		} <span class="kw">else</span> {
+			<span class="ident">w</span> <span class="op">=</span> <span class="ident">width</span>;
+		}
+		<span class="kw">if</span> <span class="ident">height</span> <span class="op">==</span> <span class="number">0</span> <span class="op">&amp;&amp;</span> (<span class="self">self</span>.<span class="ident">image_mode</span> <span class="op">==</span> <span class="ident">ImageMode</span>::<span class="ident">CORNER</span> <span class="op">||</span> <span class="self">self</span>.<span class="ident">image_mode</span> <span class="op">==</span> <span class="ident">ImageMode</span>::<span class="ident">CENTER</span>) {
+			<span class="ident">h</span> <span class="op">=</span> <span class="ident">img</span>.<span class="ident">height</span>();
+		} <span class="kw">else</span> {
+			<span class="ident">h</span> <span class="op">=</span> <span class="ident">height</span>;
+		}
+		
+		<span class="comment">// handle image mode</span>
+		<span class="kw">match</span> <span class="self">self</span>.<span class="ident">image_mode</span> {
+			<span class="ident">ImageMode</span>::<span class="ident">CORNER</span>  <span class="op">=&gt;</span> (<span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">w</span>, <span class="ident">h</span>),
+			<span class="ident">ImageMode</span>::<span class="ident">CORNERS</span> <span class="op">=&gt;</span> (<span class="ident">x</span>, <span class="ident">y</span>, (<span class="ident">w</span> <span class="kw">as</span> <span class="ident">i32</span> <span class="op">-</span> <span class="ident">x</span>).<span class="ident">abs</span>() <span class="kw">as</span> <span class="ident">u32</span>, (<span class="ident">h</span> <span class="kw">as</span> <span class="ident">i32</span> <span class="op">-</span> <span class="ident">y</span>).<span class="ident">abs</span>() <span class="kw">as</span> <span class="ident">u32</span>), <span class="comment">// TODO: What happens with negative and mixed up coordinates?</span>
+			<span class="ident">ImageMode</span>::<span class="ident">CENTER</span>  <span class="op">=&gt;</span> ((<span class="ident">x</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">-</span> <span class="number">0.5</span><span class="kw-2">*</span><span class="ident">w</span> <span class="kw">as</span> <span class="ident">f32</span>) <span class="kw">as</span> <span class="ident">i32</span>, (<span class="ident">y</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">-</span> <span class="number">0.5</span><span class="kw-2">*</span><span class="ident">h</span> <span class="kw">as</span> <span class="ident">f32</span>) <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">w</span>, <span class="ident">h</span>),
+		}
+	}
+
+	<span class="doccomment">/// converts radians to degrees if AngleMode is set accordingly</span>
+	<span class="kw">fn</span> <span class="ident">angle_arg</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">a</span>: <span class="ident">f32</span>) <span class="op">-&gt;</span> <span class="ident">f32</span> {
+		<span class="kw">match</span> <span class="self">self</span>.<span class="ident">angle_mode</span> {
+			<span class="ident">AngleMode</span>::<span class="ident">RADIANS</span> <span class="op">=&gt;</span> <span class="ident">utils</span>::<span class="ident">rad_to_deg</span>(<span class="ident">a</span>),
+			<span class="ident">AngleMode</span>::<span class="ident">DEGREES</span> <span class="op">=&gt;</span> <span class="ident">a</span>,
+		}
 	}
 }
 
 
+<span class="doccomment">/// options for the interpretation of angle parameters</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>)]</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">AngleMode</span> {
+	<span class="doccomment">/// RADIANS (default): angles are interpreted as radians</span>
+	<span class="ident">RADIANS</span>,
+	<span class="doccomment">/// DEGREES: angles are interpreted as degrees</span>
+	<span class="ident">DEGREES</span>,
+}
+
 <span class="doccomment">/// options for the interpretation of the parameters given to rect()</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">RectMode</span> {
-	<span class="doccomment">/// CORNER (default): Coordinates of the upper left corner (x, y), width (w) and height (h)</span>
+	<span class="doccomment">/// CORNER (default): coordinates of the upper left corner (x, y), width (w) and height (h)</span>
 	<span class="ident">CORNER</span>,
-	<span class="doccomment">/// CORNERS: Coordinates of the upper left corner (x, y) and the lower right corner (w, h)</span>
+	<span class="doccomment">/// CORNERS: coordinates of the upper left corner (x, y) and the lower right corner (w, h)</span>
 	<span class="ident">CORNERS</span>,
-	<span class="doccomment">/// CENTER: Coordinates of the center (x, y), width (w) and height (h)</span>
+	<span class="doccomment">/// CENTER: coordinates of the center (x, y), width (w) and height (h)</span>
 	<span class="ident">CENTER</span>,
-	<span class="doccomment">/// RADIUS: Coordinates of the center (x, y), half width (w) and half height (h)</span>
+	<span class="doccomment">/// RADIUS: coordinates of the center (x, y), half width (w) and half height (h)</span>
 	<span class="ident">RADIUS</span>,
+}
+
+<span class="doccomment">/// options for the interpretation of the parameters given to rect()</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>)]</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ImageMode</span> {
+	<span class="doccomment">/// CORNER (default): coordinates of the upper left corner (x, y), width (w) and height (h)</span>
+	<span class="ident">CORNER</span>,
+	<span class="doccomment">/// CORNERS: coordinates of the upper left corner (x, y) and the lower right corner (w, h)</span>
+	<span class="ident">CORNERS</span>,
+	<span class="doccomment">/// CENTER: coordinates of the center (x, y), width (w) and height (h)</span>
+	<span class="ident">CENTER</span>,
 }
 
 
