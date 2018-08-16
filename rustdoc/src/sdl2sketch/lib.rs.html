@@ -684,6 +684,15 @@
 <span id="628">628</span>
 <span id="629">629</span>
 <span id="630">630</span>
+<span id="631">631</span>
+<span id="632">632</span>
+<span id="633">633</span>
+<span id="634">634</span>
+<span id="635">635</span>
+<span id="636">636</span>
+<span id="637">637</span>
+<span id="638">638</span>
+<span id="639">639</span>
 </pre><pre class="rust ">
 <span class="doccomment">//! SDL2Sketch tries to simplify the use of [rust-sdl2](https://github.com/Rust-SDL2/rust-sdl2) by following the style of the [p5.js](https://p5js.org) API. It does not try to be a complete game engine, but just wants to make it as easy as possible to create visual applications in Rust without much boilerplate code. Code examples and the source code of SDL2Sketch can be found on its [GitHub page](https://github.com/emirpnet/sdl2sketch).</span>
 
@@ -1169,11 +1178,19 @@
 
 	<span class="comment">/* draw images */</span>
 	
-	<span class="doccomment">/// displays an image at the given position (x,y) and size (w,h)</span>
+	<span class="doccomment">/// displays an image at position (x,y) in size (w,h)</span>
 	<span class="doccomment">///</span>
 	<span class="doccomment">/// If w and/or h is 0 the original image width and/or height is used.</span>
 	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">image</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">img</span>: <span class="kw-2">&amp;</span><span class="ident">Image</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>, <span class="ident">w</span>: <span class="ident">u32</span>, <span class="ident">h</span>: <span class="ident">u32</span>) {
-		<span class="kw">let</span> (<span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">w</span>, <span class="ident">h</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">image_args</span>(<span class="ident">img</span>, <span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">w</span>, <span class="ident">h</span>);
+		<span class="self">self</span>.<span class="ident">image_part</span>(<span class="ident">img</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="ident">img</span>.<span class="ident">width</span>(), <span class="ident">img</span>.<span class="ident">height</span>(), <span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">w</span>, <span class="ident">h</span>);
+	}
+
+	<span class="doccomment">/// displays part of an image defined by (sx, sy, sw, sh) at position (x,y) in size (w,h)</span>
+	<span class="doccomment">///</span>
+	<span class="doccomment">/// If w and/or h is 0 the original image size is used, i.e. no scaling is applied.</span>
+	<span class="doccomment">/// The parameters sx, sy, sw and sh do *not* respect the setting of image_mode!</span>
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">image_part</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">img</span>: <span class="kw-2">&amp;</span><span class="ident">Image</span>, <span class="ident">sx</span>: <span class="ident">i32</span>, <span class="ident">sy</span>: <span class="ident">i32</span>, <span class="ident">sw</span>: <span class="ident">u32</span>, <span class="ident">sh</span>: <span class="ident">u32</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>, <span class="ident">w</span>: <span class="ident">u32</span>, <span class="ident">h</span>: <span class="ident">u32</span>) {
+		<span class="kw">let</span> (<span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">w</span>, <span class="ident">h</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">image_args</span>(<span class="ident">sx</span>, <span class="ident">sy</span>, <span class="ident">sw</span>, <span class="ident">sh</span>, <span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">w</span>, <span class="ident">h</span>);
 
 		<span class="comment">// convert Surface to Texture</span>
 		<span class="comment">// TODO: check if this is a performance issue</span>
@@ -1184,23 +1201,24 @@
 		};
 
 		<span class="comment">// draw on canvas</span>
-		<span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">sdl2</span>::<span class="ident">rect</span>::<span class="ident">Rect</span>::<span class="ident">new</span>(<span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">w</span>, <span class="ident">h</span>);
-		<span class="self">self</span>.<span class="ident">canvas</span>.<span class="ident">copy</span>(<span class="kw-2">&amp;</span><span class="ident">tex</span>, <span class="prelude-val">None</span>, <span class="ident">rect</span>).<span class="ident">unwrap_or_else</span>( <span class="op">|</span><span class="ident">e</span><span class="op">|</span> { <span class="macro">eprintln</span><span class="macro">!</span>(<span class="string">&quot;Drawing of image failed. {}&quot;</span>, <span class="ident">e</span>); } );
+		<span class="kw">let</span> <span class="ident">src_rect</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">sdl2</span>::<span class="ident">rect</span>::<span class="ident">Rect</span>::<span class="ident">new</span>(<span class="ident">sx</span>, <span class="ident">sy</span>, <span class="ident">sw</span>, <span class="ident">sh</span>));
+		<span class="kw">let</span> <span class="ident">dst_rect</span> <span class="op">=</span> <span class="ident">sdl2</span>::<span class="ident">rect</span>::<span class="ident">Rect</span>::<span class="ident">new</span>(<span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">w</span>, <span class="ident">h</span>);
+		<span class="self">self</span>.<span class="ident">canvas</span>.<span class="ident">copy</span>(<span class="kw-2">&amp;</span><span class="ident">tex</span>, <span class="ident">src_rect</span>, <span class="ident">dst_rect</span>).<span class="ident">unwrap_or_else</span>( <span class="op">|</span><span class="ident">e</span><span class="op">|</span> { <span class="macro">eprintln</span><span class="macro">!</span>(<span class="string">&quot;Drawing of image failed. {}&quot;</span>, <span class="ident">e</span>); } );
 	}
 
-	<span class="doccomment">/// converts parameters for rect() accroding to setting of rect_mode</span>
-	<span class="kw">fn</span> <span class="ident">image_args</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">img</span>: <span class="kw-2">&amp;</span><span class="ident">Image</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>, <span class="ident">width</span>: <span class="ident">u32</span>, <span class="ident">height</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">u32</span>, <span class="ident">u32</span>) {
+	<span class="doccomment">/// converts parameters for image_part() accroding to setting of image_mode</span>
+	<span class="kw">fn</span> <span class="ident">image_args</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">_sx</span>: <span class="ident">i32</span>, <span class="ident">_sy</span>: <span class="ident">i32</span>, <span class="ident">sw</span>: <span class="ident">u32</span>, <span class="ident">sh</span>: <span class="ident">u32</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>, <span class="ident">width</span>: <span class="ident">u32</span>, <span class="ident">height</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">u32</span>, <span class="ident">u32</span>) {
 		
 		<span class="comment">// handle w and/or h == 0</span>
 		<span class="kw">let</span> <span class="ident">w</span>;
 		<span class="kw">let</span> <span class="ident">h</span>;
 		<span class="kw">if</span> <span class="ident">width</span> <span class="op">==</span> <span class="number">0</span> <span class="op">&amp;&amp;</span> (<span class="self">self</span>.<span class="ident">image_mode</span> <span class="op">==</span> <span class="ident">ImageMode</span>::<span class="ident">CORNER</span> <span class="op">||</span> <span class="self">self</span>.<span class="ident">image_mode</span> <span class="op">==</span> <span class="ident">ImageMode</span>::<span class="ident">CENTER</span>) {
-			<span class="ident">w</span> <span class="op">=</span> <span class="ident">img</span>.<span class="ident">width</span>();
+			<span class="ident">w</span> <span class="op">=</span> <span class="ident">sw</span>;
 		} <span class="kw">else</span> {
 			<span class="ident">w</span> <span class="op">=</span> <span class="ident">width</span>;
 		}
 		<span class="kw">if</span> <span class="ident">height</span> <span class="op">==</span> <span class="number">0</span> <span class="op">&amp;&amp;</span> (<span class="self">self</span>.<span class="ident">image_mode</span> <span class="op">==</span> <span class="ident">ImageMode</span>::<span class="ident">CORNER</span> <span class="op">||</span> <span class="self">self</span>.<span class="ident">image_mode</span> <span class="op">==</span> <span class="ident">ImageMode</span>::<span class="ident">CENTER</span>) {
-			<span class="ident">h</span> <span class="op">=</span> <span class="ident">img</span>.<span class="ident">height</span>();
+			<span class="ident">h</span> <span class="op">=</span> <span class="ident">sh</span>;
 		} <span class="kw">else</span> {
 			<span class="ident">h</span> <span class="op">=</span> <span class="ident">height</span>;
 		}
