@@ -4,7 +4,7 @@
 <!--
 /* 
  * Random eighths
- * Version: 1.0
+ * Version: 1.1
  *
  * Copyright (C) 2018 Jochen Peters
  * http://www.emirp.net/
@@ -28,27 +28,50 @@
 
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width">
-<meta name="date" content="2018-09-01">
+<meta name="date" content="2018-09-02">
 
 <script language="javascript" type="text/javascript">
 
 	var rhythm = [false, false, false, false, false, false, false, false];
 	var notes_img = [];
+	const NOTES_IMG_WIDTH = 160;
 
 	function initialize() {
+		// define image src paths
 		notes_img.push("resources/notes_00.png");
 		notes_img.push("resources/notes_01.png");
 		notes_img.push("resources/notes_10.png");
 		notes_img.push("resources/notes_11.png");
-		random_rhythm();
-		show_notes();
+
+		// update rhythm
+		update();
 	}
 
-	function show_notes() {
+	function update() {
+		random_rhythm();
+		update_notes_src();
+		update_notes_size();
+	}
+
+	function update_notes_src() {
 		document.getElementById("one").src   = notes_img[get_notes_index(0)];
 		document.getElementById("two").src   = notes_img[get_notes_index(2)];
 		document.getElementById("three").src = notes_img[get_notes_index(4)];
 		document.getElementById("four").src  = notes_img[get_notes_index(6)];
+	}
+
+	function update_notes_size() {
+		if(4 * NOTES_IMG_WIDTH + 20 > window.innerWidth) { // +20 for padding (=10px, see below)
+			document.getElementById("one").style.width   = "25%";
+			document.getElementById("two").style.width   = "25%";
+			document.getElementById("three").style.width = "25%";
+			document.getElementById("four").style.width  = "25%";
+		} else {
+			document.getElementById("one").style.width   = "";
+			document.getElementById("two").style.width   = "";
+			document.getElementById("three").style.width = "";
+			document.getElementById("four").style.width  = "";
+		}
 	}
 
 	function get_notes_index(pos) {
@@ -85,8 +108,12 @@
 
 <style>
 
+	html {
+		touch-action: manipulation;
+	}
+
 	body {
-		padding: 2%;
+		padding: 10px;
 		margin: 0;
 		color: black;
 		font-family: sans-serif;
@@ -103,11 +130,11 @@
 
 </head>
 
-<body onload="initialize()">
+<body onload="initialize()" onresize="update_notes_size()">
 
 <h1>Random eighths</h1>
 
-<img id="one" src="resources/notes_00.png"><img id="two" src="resources/notes_00.png"><img id="three" src="resources/notes_00.png"><img id="four" src="resources/notes_00.png">
+<img id="one" onclick="update()" src="resources/notes_00.png"><img id="two" onclick="update()" src="resources/notes_00.png"><img id="three" onclick="update()" src="resources/notes_00.png"><img id="four" onclick="update()" src="resources/notes_00.png">
 
 </body>
 </html>
