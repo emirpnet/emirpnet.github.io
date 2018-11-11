@@ -685,14 +685,6 @@
 <span id="629">629</span>
 <span id="630">630</span>
 <span id="631">631</span>
-<span id="632">632</span>
-<span id="633">633</span>
-<span id="634">634</span>
-<span id="635">635</span>
-<span id="636">636</span>
-<span id="637">637</span>
-<span id="638">638</span>
-<span id="639">639</span>
 </pre><pre class="rust ">
 <span class="doccomment">//! SDL2Sketch tries to simplify the use of [rust-sdl2](https://github.com/Rust-SDL2/rust-sdl2) by following the style of the [p5.js](https://p5js.org) API. It does not try to be a complete game engine, but just wants to make it as easy as possible to create visual applications in Rust without much boilerplate code. Code examples and the source code of SDL2Sketch can be found on its [GitHub page](https://github.com/emirpnet/sdl2sketch).</span>
 
@@ -717,7 +709,7 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">no_inline</span>)]</span> <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">sdl2</span>::<span class="ident">pixels</span>::<span class="ident">Color</span>;
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">no_inline</span>)]</span> <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">sdl2</span>::<span class="ident">keyboard</span>::<span class="ident">Keycode</span>;
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">no_inline</span>)]</span> <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">sdl2</span>::<span class="ident">mouse</span>::<span class="ident">MouseButton</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">no_inline</span>)]</span> <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">sdl2</span>::<span class="ident">surface</span>::<span class="ident">Surface</span> <span class="kw">as</span> <span class="ident">Image</span>; <span class="comment">// &quot;Surface as Image&quot; is good enough for now.</span>
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">no_inline</span>)]</span> <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">sdl2</span>::<span class="ident">render</span>::<span class="ident">Texture</span> <span class="kw">as</span> <span class="ident">Image</span>;
 
 <span class="doccomment">/// module containing utility functions</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">utils</span>;
@@ -1178,11 +1170,18 @@
 
 	<span class="comment">/* draw images */</span>
 	
+	<span class="doccomment">/// loads an image from file (PNG or JPG)</span>
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load_image</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">filename</span>: <span class="kw-2">&amp;</span><span class="ident">Path</span>) <span class="op">-&gt;</span> <span class="ident">Image</span> {
+		<span class="kw">let</span> <span class="ident">surf</span> <span class="op">=</span> <span class="ident">Surface</span>::<span class="ident">from_file</span>(<span class="ident">filename</span>).<span class="ident">expect</span>(<span class="string">&quot;Error loading image. Abort.&quot;</span>);
+		<span class="self">self</span>.<span class="ident">texture_creator</span>.<span class="ident">create_texture_from_surface</span>(<span class="ident">surf</span>).<span class="ident">expect</span>(<span class="string">&quot;Error converting image to texture. Abort.&quot;</span>)
+	}
+
 	<span class="doccomment">/// displays an image at position (x,y) in size (w,h)</span>
 	<span class="doccomment">///</span>
 	<span class="doccomment">/// If w and/or h is 0 the original image width and/or height is used.</span>
 	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">image</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">img</span>: <span class="kw-2">&amp;</span><span class="ident">Image</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>, <span class="ident">w</span>: <span class="ident">u32</span>, <span class="ident">h</span>: <span class="ident">u32</span>) {
-		<span class="self">self</span>.<span class="ident">image_part</span>(<span class="ident">img</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="ident">img</span>.<span class="ident">width</span>(), <span class="ident">img</span>.<span class="ident">height</span>(), <span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">w</span>, <span class="ident">h</span>);
+		<span class="kw">let</span> <span class="ident">query</span> <span class="op">=</span> <span class="ident">img</span>.<span class="ident">query</span>();
+		<span class="self">self</span>.<span class="ident">image_part</span>(<span class="ident">img</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="ident">query</span>.<span class="ident">width</span>, <span class="ident">query</span>.<span class="ident">height</span>, <span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">w</span>, <span class="ident">h</span>);
 	}
 
 	<span class="doccomment">/// displays part of an image defined by (sx, sy, sw, sh) at position (x,y) in size (w,h)</span>
@@ -1191,19 +1190,9 @@
 	<span class="doccomment">/// The parameters sx, sy, sw and sh do *not* respect the setting of image_mode!</span>
 	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">image_part</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">img</span>: <span class="kw-2">&amp;</span><span class="ident">Image</span>, <span class="ident">sx</span>: <span class="ident">i32</span>, <span class="ident">sy</span>: <span class="ident">i32</span>, <span class="ident">sw</span>: <span class="ident">u32</span>, <span class="ident">sh</span>: <span class="ident">u32</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>, <span class="ident">w</span>: <span class="ident">u32</span>, <span class="ident">h</span>: <span class="ident">u32</span>) {
 		<span class="kw">let</span> (<span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">w</span>, <span class="ident">h</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">image_args</span>(<span class="ident">sx</span>, <span class="ident">sy</span>, <span class="ident">sw</span>, <span class="ident">sh</span>, <span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">w</span>, <span class="ident">h</span>);
-
-		<span class="comment">// convert Surface to Texture</span>
-		<span class="comment">// TODO: check if this is a performance issue</span>
-		<span class="kw">let</span> <span class="ident">tex</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">texture_creator</span>.<span class="ident">create_texture_from_surface</span>(<span class="ident">img</span>);
-		<span class="kw">let</span> <span class="ident">tex</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">tex</span> {
-			<span class="prelude-val">Ok</span>(<span class="ident">t</span>) <span class="op">=&gt;</span> <span class="ident">t</span>,
-			<span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=&gt;</span> { <span class="macro">eprintln</span><span class="macro">!</span>(<span class="string">&quot;Drawing of image failed. {}&quot;</span>, <span class="ident">e</span>); <span class="kw">return</span>; }
-		};
-
-		<span class="comment">// draw on canvas</span>
 		<span class="kw">let</span> <span class="ident">src_rect</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">sdl2</span>::<span class="ident">rect</span>::<span class="ident">Rect</span>::<span class="ident">new</span>(<span class="ident">sx</span>, <span class="ident">sy</span>, <span class="ident">sw</span>, <span class="ident">sh</span>));
 		<span class="kw">let</span> <span class="ident">dst_rect</span> <span class="op">=</span> <span class="ident">sdl2</span>::<span class="ident">rect</span>::<span class="ident">Rect</span>::<span class="ident">new</span>(<span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">w</span>, <span class="ident">h</span>);
-		<span class="self">self</span>.<span class="ident">canvas</span>.<span class="ident">copy</span>(<span class="kw-2">&amp;</span><span class="ident">tex</span>, <span class="ident">src_rect</span>, <span class="ident">dst_rect</span>).<span class="ident">unwrap_or_else</span>( <span class="op">|</span><span class="ident">e</span><span class="op">|</span> { <span class="macro">eprintln</span><span class="macro">!</span>(<span class="string">&quot;Drawing of image failed. {}&quot;</span>, <span class="ident">e</span>); } );
+		<span class="self">self</span>.<span class="ident">canvas</span>.<span class="ident">copy</span>(<span class="ident">img</span>, <span class="ident">src_rect</span>, <span class="ident">dst_rect</span>).<span class="ident">unwrap_or_else</span>( <span class="op">|</span><span class="ident">e</span><span class="op">|</span> { <span class="macro">eprintln</span><span class="macro">!</span>(<span class="string">&quot;Drawing of image failed. {}&quot;</span>, <span class="ident">e</span>); } );
 	}
 
 	<span class="doccomment">/// converts parameters for image_part() accroding to setting of image_mode</span>
@@ -1274,11 +1263,6 @@
 	<span class="ident">CENTER</span>,
 }
 
-
-<span class="doccomment">/// loads an image from file (PNG or JPG)</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load_image</span>(<span class="ident">filename</span>: <span class="kw-2">&amp;</span><span class="ident">Path</span>) <span class="op">-&gt;</span> <span class="ident">Image</span> { <span class="comment">// TODO: Why does this not compile as a (not static) method of Sketch?</span>
-	<span class="ident">Surface</span>::<span class="ident">from_file</span>(<span class="ident">filename</span>).<span class="ident">expect</span>(<span class="string">&quot;Error loading image. Abort.&quot;</span>)
-}
 
 <span class="doccomment">/// initializes the necessary SDL2 subsystems and returns a SDL2 window/renderer and event pump</span>
 <span class="kw">fn</span> <span class="ident">init_sdl_subsystems</span>(<span class="ident">width</span>: <span class="ident">u32</span>, <span class="ident">height</span>: <span class="ident">u32</span>, <span class="ident">title</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> (<span class="ident">Canvas</span><span class="op">&lt;</span><span class="ident">sdl2</span>::<span class="ident">video</span>::<span class="ident">Window</span><span class="op">&gt;</span>, <span class="ident">EventPump</span>, <span class="ident">Sdl2ImageContext</span>) {
