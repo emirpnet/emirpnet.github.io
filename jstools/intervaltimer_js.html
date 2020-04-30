@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<!--
+/* 
+ * IntervalTimer.js
+ * Version: <see VERSION_INFO below>
+ *
+ * Copyright (C) 2020 Jochen Peters
+ * http://www.emirp.net/
+ *
+ * IntervalTimer.js is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * It is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * See <http://www.gnu.org/licenses/> for a copy of the GNU General 
+ * Public License.
+ */
+ //-->
+	
+<title>IntervalTimer.js</title>
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width">
+<meta name="date" content="2020-04-30">
+
+<script language="javascript" type="text/javascript">
+
+	/* parameters */
+	const VERSION_INFO = "Version 0.2";
+	const UPDATE_DELAY = 100; // in ms
+	const MSEC_PRECISION = 1; // in number of digits
+	var audio_secs = new Audio('beep1.wav');
+	var audio_start_work = new Audio('beep2.wav');
+	var audio_start_rest = new Audio('beep3.wav');
+
+	/* settings */
+	var num_sets = 10;
+	var work_interval = 45000; // in ms
+	var rest_interval = 15000; // in ms
+
+	/* status variables */
+	var interval = null;
+	var offset = 0; // in ms
+	var rest_phase = false;
+	var time_left = work_interval; // in ms
+	var sets_left = num_sets;
+	var just_reset = false;
+
+	/* functions */
+	function initialize() {
+
+		document.getElementById("version_info").innerHTML = VERSION_INFO;
+
+		window.addEventListener("keydown", function(event) {
+			if(event.defaultPrevented) {
+				return; // do nothing if the event was already processed
+			}
+			switch(event.key) {
+				case "Enter":
+					start_stop();
+					break;
+				case 'Backspace': case 'r': case 'R':
+					reset_timer();
+					break;
+				default:
+					return; // quit if this does not handle the event
+			}
+			// cancel default action to avoid it being handled twice
+			event.preventDefault();
+		}, true);
+
+		reset_status();
+		update_display();
+	}
+
+	function reset_status() {
+		interval = null;
+		offset = 0;
+		rest_phase = false;
+		time_left = work_interval;
+		sets_left = num_sets;
+		just_reset = true;
+	}
+
+	function reset_timer() {
+		stop_timer();
+		if(just_reset) {
+			read_settings();
+		}
+
+		reset_status();
+		disable_settings(false);
+		update_display();
+	}
+
+	function start_timer() {
+		if(!interval) {
+			offset = performance.now();
+			interval = setInterval(update_timer, UPDATE_DELAY);
+			just_reset = false;
+			disable_settings(true);
+			if(rest_phase) {
+				document.getElementById("timer_display").style.background = "green"
+			} else {
+				document.getElementById("timer_display").style.background = "red"
+			}
+		}
+	}
+	
+	function stop_timer() {
+		if(interval) {
+			clearInterval(interval);
+			interval = null;
+			document.getElementById("timer_display").style.background = "white"
+		}
+	}
+
+	function start_stop() {
+		if(interval) {
+			stop_timer();
+		} else {
+			start_timer();
+		}
+	}
+
+	function update_timer() {
+		now = performance.now();
+		time_left -= (now - offset);
+		offset = now;
+		if(time_left <= 0) {
+			if(rest_phase) {
+				sets_left--;
+					if(sets_left <= 0) {
+						reset_timer();
+						return;
+					}
+				start_work_phase();
+			} else {
+				start_rest_phase();
+			}
+		}
+		update_display();
+	}
+
+	function start_work_phase() {
+		document.getElementById("timer_display").style.background = "red"
+		time_left = work_interval;
+		rest_phase = false;
+	}
+
+	function start_rest_phase() {
+		document.getElementById("timer_display").style.background = "green"
+		time_left = rest_interval;
+		rest_phase = true;
+	}
+
+	function read_settings() {
+		num_sets = parseInt(document.getElementById("setting_sets").value);
+		work_interval = parseInt(document.getElementById("setting_work").value) * 1000;
+		rest_interval = parseInt(document.getElementById("setting_rest").value) * 1000;
+
+	}
+
+	function disable_settings(value) {
+		document.getElementById("setting_sets").disabled = value;
+		document.getElementById("setting_work").disabled = value;
+		document.getElementById("setting_rest").disabled = value;
+	}
+
+	function update_display() {
+		document.getElementById("timer_display").value = msecs_to_string(time_left, MSEC_PRECISION);
+		document.getElementById("setting_sets").value = sets_left.toString();
+		document.getElementById("setting_work").value = Math.floor(work_interval / 1000);
+		document.getElementById("setting_rest").value = Math.floor(rest_interval / 1000);
+		if(just_reset) {
+			document.getElementById("reset_button").innerHTML = "Apply settings";
+		} else {
+			document.getElementById("reset_button").innerHTML = "Reset";
+		}
+	}
+
+	function msecs_to_string(msecs, msec_precision=0) {
+		
+		/* shortcut for zero and negative values */
+		if(msecs <= 0) {
+			var zeroval = 0;
+			return "00:00:00" + zeroval.toFixed(msec_precision).toString().substring(1);
+		}
+		
+		/* break seconds down into hrs, min, sec */
+		var sec = Math.floor(msecs / 1000);
+		var hrs = Math.floor(sec / 3600);
+		sec = sec % 3600;
+		var min = Math.floor(sec / 60);
+		sec = sec % 60;
+		var tsec = (Math.floor(msecs) % 1000) / 1000.0;
+
+		/* add leading zeros if necessary */
+		sec = sec < 10 ? "0"+sec : sec.toString();
+		min = min < 10 ? "0"+min : min.toString();
+		hrs = hrs < 10 ? "0"+hrs : hrs.toString();
+		tsec = tsec.toFixed(msec_precision).toString().substring(1);
+
+		return hrs + ":" + min + ":" + sec + tsec;
+	}
+
+</script>
+
+<style>
+	html {
+		touch-action: manipulation;
+	}
+
+	body {
+		padding: 2%;
+		margin: 0;
+		color: white;
+		font-family: sans-serif;
+		background: #2196F3;
+	}
+
+	h1 {
+		margin-bottom: 0;
+		font-size: 2.5em;
+		font-weight: bold;
+	}
+
+	h5 {
+		margin: 0;
+		font-size: 0.9em;
+		font-weight: normal;
+	}
+
+	div.display {
+		width: 100%;
+		margin-top: 1em;
+		font-size: 1.5em;
+	}
+
+	.display input {
+		width: 100%;
+		height: 2em;
+		margin: 10px 0;
+		padding: 0;
+		font-size: 1.0em;
+		text-align: center;
+	}
+
+	.display button {
+		width: 100%;
+		height: 2em;
+		margin: 1px 0 0 0;
+		padding: 0;
+		font-size: 1.0em;
+		background: #BBDEFB;
+	}
+
+	div.settings {
+		width: 100%;
+		margin-top: 1.5em;
+		font-size: 1.5em;
+	}
+
+	.settings input {
+		width: 8em;
+		padding: 0.1em 0.2em;
+		text-align: right;
+		font-size: 1.0em;
+	}
+
+	.settings label {
+		margin: 0 0.5em;
+	}
+</style>
+
+</head>
+
+<body onload="initialize()">
+
+<h1>IntervalTimer.js</h1>
+<h5 id="version_info"></h5>
+
+<form class="timer">
+
+<div class="display">
+<input type="text" id="timer_display" value="NO JAVASCRIPT" readonly>
+<button type="button" id="startstop_button" onclick="start_stop()">Start/Stop</button>
+<button type="button" id="reset_button" onclick="reset_timer()">Reset</button>
+</div>
+
+<div class="settings">
+<input type="text" id="setting_sets" value=""><label>sets</label><br>
+<input type="text" id="setting_work" value=""><label>work time (seconds)</label><br>
+<input type="text" id="setting_rest" value=""><label>rest time (seconds)</label><br>
+</div>
+
+</form>
+
+</body>
+</html>
+
