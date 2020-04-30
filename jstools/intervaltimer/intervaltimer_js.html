@@ -34,12 +34,14 @@
 <script language="javascript" type="text/javascript">
 
 	/* parameters */
-	const VERSION_INFO = "Version 0.21";
+	const VERSION_INFO = "Version 0.9";
 	const UPDATE_DELAY = 100; // in ms
 	const MSEC_PRECISION = 1; // in number of digits
-	var audio_secs = new Audio('beep1.wav');
-	var audio_start_work = new Audio('beep2.wav');
-	var audio_start_rest = new Audio('beep3.wav');
+	const NEXTPHASE_WARNING = 5000; // in ms
+	var audio_sec = new Audio('resources/blip01.ogg');
+	var audio_start_work = new Audio('resources/beep01.ogg');
+	var audio_start_rest = new Audio('resources/chime01.ogg');
+	var audio_finished = new Audio('resources/beep02.ogg');
 
 	/* settings */
 	var num_sets = 10;
@@ -47,12 +49,16 @@
 	var rest_interval = 15000; // in ms
 
 	/* status variables */
-	var interval = null;
-	var offset = 0; // in ms
-	var rest_phase = false;
-	var time_left = work_interval; // in ms
-	var sets_left = num_sets;
-	var just_reset = false;
+	const STATUS_JUSTRESET = 1;
+	const STATUS_PRESTART = 2;
+	const STATUS_WORKPHASE = 3;
+	const STATUS_RESTPHASE = 4;
+	var timerstatus;
+	var interval;
+	var offset; // in ms
+	var time_left; // in ms
+	var sets_left;
+	var next_warning;
 
 	/* functions */
 	function initialize() {
@@ -82,20 +88,19 @@
 	}
 
 	function reset_status() {
+		timerstatus = STATUS_JUSTRESET;
 		interval = null;
 		offset = 0;
-		rest_phase = false;
 		time_left = work_interval;
 		sets_left = num_sets;
-		just_reset = true;
+		next_warning = NEXTPHASE_WARNING;
 	}
 
 	function reset_timer() {
 		stop_timer();
-		if(just_reset) {
+		if(timerstatus == STATUS_JUSTRESET) {
 			read_settings();
 		}
-
 		reset_status();
 		disable_settings(false);
 		update_display();
@@ -103,15 +108,12 @@
 
 	function start_timer() {
 		if(!interval) {
+			disable_settings(true);
+			if(timerstatus == STATUS_JUSTRESET) {
+				start_prestart();
+			}
 			offset = performance.now();
 			interval = setInterval(update_timer, UPDATE_DELAY);
-			just_reset = false;
-			disable_settings(true);
-			if(rest_phase) {
-				document.getElementById("timer_display").style.background = "green"
-			} else {
-				document.getElementById("timer_display").style.background = "red"
-			}
 		}
 	}
 	
@@ -119,7 +121,6 @@
 		if(interval) {
 			clearInterval(interval);
 			interval = null;
-			document.getElementById("timer_display").style.background = "white"
 		}
 	}
 
@@ -136,30 +137,52 @@
 		time_left -= (now - offset);
 		offset = now;
 		if(time_left <= 0) {
-			if(rest_phase) {
-				sets_left--;
-					if(sets_left <= 0) {
-						reset_timer();
-						return;
+			switch(timerstatus) {
+				case STATUS_PRESTART:
+					start_workphase();
+					break;
+				case STATUS_WORKPHASE:
+					if(sets_left <= 1) {
+						finished();
+					} else {
+						start_restphase();
 					}
-				start_work_phase();
-			} else {
-				start_rest_phase();
+					break;
+				case STATUS_RESTPHASE:
+					sets_left--;
+					start_workphase();
+					break;
 			}
+		} else if(time_left <= next_warning) {
+			audio_sec.play();
+			next_warning -= 1000;
 		}
 		update_display();
 	}
 
-	function start_work_phase() {
-		document.getElementById("timer_display").style.background = "red"
-		time_left = work_interval;
-		rest_phase = false;
+	function start_prestart() {
+		timerstatus = STATUS_PRESTART;
+		time_left = NEXTPHASE_WARNING;
+		next_warning = NEXTPHASE_WARNING;
 	}
 
-	function start_rest_phase() {
-		document.getElementById("timer_display").style.background = "green"
+	function start_workphase() {
+		timerstatus = STATUS_WORKPHASE;
+		audio_start_work.play();
+		time_left = work_interval;
+		next_warning = NEXTPHASE_WARNING;
+	}
+
+	function start_restphase() {
+		timerstatus = STATUS_RESTPHASE;
+		audio_start_rest.play();
 		time_left = rest_interval;
-		rest_phase = true;
+		next_warning = NEXTPHASE_WARNING;
+	}
+
+	function finished() {
+		audio_finished.play();
+		reset_timer();
 	}
 
 	function read_settings() {
@@ -180,7 +203,16 @@
 		document.getElementById("setting_sets").value = sets_left.toString();
 		document.getElementById("setting_work").value = Math.floor(work_interval / 1000);
 		document.getElementById("setting_rest").value = Math.floor(rest_interval / 1000);
-		if(just_reset) {
+
+		if(!interval) {
+			document.getElementById("timer_display").style.background = "white";
+		} else if(timerstatus == STATUS_WORKPHASE) {
+			document.getElementById("timer_display").style.background = "red";
+		} else if(timerstatus == STATUS_RESTPHASE) {
+			document.getElementById("timer_display").style.background = "green";
+		}
+
+		if(timerstatus == STATUS_JUSTRESET) {
 			document.getElementById("reset_button").innerHTML = "Apply settings";
 		} else {
 			document.getElementById("reset_button").innerHTML = "Reset";
@@ -270,7 +302,7 @@
 	}
 
 	.settings input {
-		width: 8em;
+		width: 6em;
 		padding: 0.1em 0.2em;
 		text-align: right;
 		font-size: 1.0em;
@@ -298,8 +330,8 @@
 
 <div class="settings">
 <input type="number" id="setting_sets" value="" onfocus="this.select()"><label>sets</label><br>
-<input type="number" id="setting_work" value="" onfocus="this.select()"><label>work time (seconds)</label><br>
-<input type="number" id="setting_rest" value="" onfocus="this.select()"><label>rest time (seconds)</label><br>
+<input type="number" id="setting_work" value="" onfocus="this.select()"><label>work time (in s)</label><br>
+<input type="number" id="setting_rest" value="" onfocus="this.select()"><label>rest time (in s)</label><br>
 </div>
 
 </form>
