@@ -34,7 +34,7 @@
 <script language="javascript" type="text/javascript">
 
 	/* parameters */
-	const VERSION_INFO = "Version 0.2";
+	const VERSION_INFO = "Version 0.21";
 	const UPDATE_DELAY = 100; // in ms
 	const MSEC_PRECISION = 1; // in number of digits
 	var audio_secs = new Audio('beep1.wav');
@@ -64,10 +64,10 @@
 				return; // do nothing if the event was already processed
 			}
 			switch(event.key) {
-				case "Enter":
+				case 's': case 'S':
 					start_stop();
 					break;
-				case 'Backspace': case 'r': case 'R':
+				case 'r': case 'R':
 					reset_timer();
 					break;
 				default:
@@ -297,9 +297,9 @@
 </div>
 
 <div class="settings">
-<input type="text" id="setting_sets" value=""><label>sets</label><br>
-<input type="text" id="setting_work" value=""><label>work time (seconds)</label><br>
-<input type="text" id="setting_rest" value=""><label>rest time (seconds)</label><br>
+<input type="number" id="setting_sets" value="" onfocus="this.select()"><label>sets</label><br>
+<input type="number" id="setting_work" value="" onfocus="this.select()"><label>work time (seconds)</label><br>
+<input type="number" id="setting_rest" value="" onfocus="this.select()"><label>rest time (seconds)</label><br>
 </div>
 
 </form>
