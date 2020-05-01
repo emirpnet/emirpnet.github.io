@@ -29,24 +29,24 @@
 
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width">
-<meta name="date" content="2020-04-30">
+<meta name="date" content="2020-05-01">
 
 <script language="javascript" type="text/javascript">
 
 	/* parameters */
-	const VERSION_INFO = "Version 0.91";
+	const VERSION_INFO = "Version 0.92";
 	const UPDATE_DELAY = 100; // in ms
 	const MSEC_PRECISION = 1; // in number of digits
-	const NEXTPHASE_WARNING = 5000; // in ms
 	var audio_sec = new Audio('resources/blip01.ogg');
-	var audio_start_work = new Audio('resources/beep01.ogg');
+	var audio_start_work = new Audio('resources/bing01.ogg');
 	var audio_start_rest = new Audio('resources/chime01.ogg');
-	var audio_finished = new Audio('resources/beep02.ogg');
+	var audio_finished = new Audio('resources/beep01.ogg');
 
 	/* settings */
 	var num_sets = 10;
 	var work_interval = 45000; // in ms
 	var rest_interval = 15000; // in ms
+	var warningtime = 5000; // in ms
 
 	/* status variables */
 	const STATUS_JUSTRESET = 1;
@@ -93,7 +93,7 @@
 		offset = 0;
 		time_left = work_interval;
 		sets_left = num_sets;
-		next_warning = NEXTPHASE_WARNING;
+		next_warning = warningtime;
 	}
 
 	function reset_timer() {
@@ -162,22 +162,30 @@
 
 	function start_prestart() {
 		timerstatus = STATUS_PRESTART;
-		time_left = NEXTPHASE_WARNING;
-		next_warning = NEXTPHASE_WARNING;
+		next_warning = warningtime;
+		time_left = warningtime;
 	}
 
 	function start_workphase() {
 		timerstatus = STATUS_WORKPHASE;
-		audio_start_work.play();
+		if(work_interval > 0) {
+			audio_start_work.play();
+		}
+		if(work_interval > warningtime) {
+			next_warning = warningtime;
+		}
 		time_left = work_interval;
-		next_warning = NEXTPHASE_WARNING;
 	}
 
 	function start_restphase() {
 		timerstatus = STATUS_RESTPHASE;
-		audio_start_rest.play();
+		if(rest_interval > 0) {
+			audio_start_rest.play();
+		}
+		if(rest_interval > warningtime) {
+			next_warning = warningtime;
+		}
 		time_left = rest_interval;
-		next_warning = NEXTPHASE_WARNING;
 	}
 
 	function finished() {
@@ -189,13 +197,14 @@
 		num_sets = parseInt(document.getElementById("setting_sets").value);
 		work_interval = parseInt(document.getElementById("setting_work").value) * 1000;
 		rest_interval = parseInt(document.getElementById("setting_rest").value) * 1000;
-
+		warningtime = parseInt(document.getElementById("setting_warningtime").value) * 1000;
 	}
 
 	function disable_settings(value) {
 		document.getElementById("setting_sets").disabled = value;
 		document.getElementById("setting_work").disabled = value;
 		document.getElementById("setting_rest").disabled = value;
+		document.getElementById("setting_warningtime").disabled = value;
 	}
 
 	function update_display() {
@@ -203,6 +212,7 @@
 		document.getElementById("setting_sets").value = sets_left.toString();
 		document.getElementById("setting_work").value = Math.floor(work_interval / 1000);
 		document.getElementById("setting_rest").value = Math.floor(rest_interval / 1000);
+		document.getElementById("setting_warningtime").value = Math.floor(warningtime / 1000);
 
 		if(!interval) {
 			document.getElementById("timer_display").style.background = "white";
@@ -332,6 +342,7 @@
 <input type="number" id="setting_sets" value="" onfocus="this.select()"><label>sets</label><br>
 <input type="number" id="setting_work" value="" onfocus="this.select()"><label>work time (in s)</label><br>
 <input type="number" id="setting_rest" value="" onfocus="this.select()"><label>rest time (in s)</label><br>
+<input type="number" id="setting_warningtime" value="" onfocus="this.select()"><label>warning (in s)</label><br>
 </div>
 
 </form>
