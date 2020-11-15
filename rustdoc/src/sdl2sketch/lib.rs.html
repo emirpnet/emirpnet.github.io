@@ -1,60 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `src/lib.rs`.">
-    <meta name="keywords" content="rust, rustlang, rust-lang">
-
-    <title>lib.rs.html -- source</title>
-
-    <link rel="stylesheet" type="text/css" href="../../normalize.css">
-    <link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle">
-    
-    <link rel="stylesheet" type="text/css" href="../../dark.css">
-    <link rel="stylesheet" type="text/css" href="../../main.css" id="themeStyle">
-    <script src="../../storage.js"></script>
-    
-
-    
-    
-</head>
-<body class="rustdoc source">
-    <!--[if lte IE 8]>
-    <div class="warning">
-        This old browser is unsupported and will most likely display funky
-        things.
-    </div>
-    <![endif]-->
-
-    
-
-    <nav class="sidebar">
-        <div class="sidebar-menu">&#9776;</div>
-        
-        
-    </nav>
-
-    <div class="theme-picker">
-        <button id="theme-picker" aria-label="Pick another theme!">
-            <img src="../../brush.svg" width="18" alt="Pick another theme!">
-        </button>
-        <div id="theme-choices"></div>
-    </div>
-    <script src="../../theme.js"></script>
-    <nav class="sub">
-        <form class="search-form js-only">
-            <div class="search-container">
-                <input class="search-input" name="search"
-                       autocomplete="off"
-                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
-                       type="search">
-            </div>
-        </form>
-    </nav>
-
-    <section id='main' class="content"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../sdl2sketch/index.html'><div class='logo-container'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -684,9 +628,8 @@
 <span id="628">628</span>
 <span id="629">629</span>
 <span id="630">630</span>
-<span id="631">631</span>
-</pre><pre class="rust ">
-<span class="doccomment">//! SDL2Sketch tries to simplify the use of [rust-sdl2](https://github.com/Rust-SDL2/rust-sdl2) by following the style of the [p5.js](https://p5js.org) API. It does not try to be a complete game engine, but just wants to make it as easy as possible to create visual applications in Rust without much boilerplate code. Code examples and the source code of SDL2Sketch can be found on its [GitHub page](https://github.com/emirpnet/sdl2sketch).</span>
+</pre><div class="example-wrap"><pre class="rust ">
+<span class="doccomment">//! SDL2Sketch for Rust tries to simplify the use of [rust-sdl2](https://github.com/Rust-SDL2/rust-sdl2) by following the style of the [p5.js](https://p5js.org) API. It does not try to be a complete game engine, but just wants to make it as easy as possible to create visual applications in Rust without much boilerplate code. Code examples and the source code of SDL2Sketch can be found on its [GitHub page](https://github.com/emirpnet/sdl2sketch-rs).</span>
 
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">num_traits</span>;
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">sdl2</span>;
@@ -726,7 +669,7 @@
 		<span class="ident">s</span>.<span class="ident">present</span>();
 		<span class="ident">s</span>.<span class="ident">delay</span>();
 		<span class="ident">s</span>.<span class="ident">fps_data</span>.<span class="ident">update</span>();
-		<span class="kw">while</span> <span class="ident">s</span>.<span class="ident">no_loop</span> <span class="op">&amp;&amp;</span> <span class="ident">s</span>.<span class="ident">running</span> {
+		<span class="kw">while</span> <span class="ident">s</span>.<span class="ident">no_loop</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">s</span>.<span class="ident">running</span> {
 			<span class="ident">thread</span>::<span class="ident">sleep</span>(<span class="ident">time</span>::<span class="ident">Duration</span>::<span class="ident">from_millis</span>(<span class="number">250</span>));
 			<span class="ident">handle_events</span>(<span class="ident">s</span>, <span class="ident">m</span>);
 		}
@@ -737,13 +680,13 @@
 <span class="kw">fn</span> <span class="ident">handle_events</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">MainLoopMethods</span><span class="op">&gt;</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Sketch</span>, <span class="ident">m</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>) {
 	<span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">event</span>) <span class="op">=</span> <span class="ident">s</span>.<span class="ident">event_pump</span>.<span class="ident">poll_event</span>() {
 		<span class="kw">match</span> <span class="ident">event</span> {
-			<span class="ident">Event</span>::<span class="ident">Quit</span> { .. }                             <span class="op">=&gt;</span> { <span class="ident">s</span>.<span class="ident">quit</span>(); }
-			<span class="ident">Event</span>::<span class="ident">KeyDown</span> { <span class="ident">keycode</span>: <span class="prelude-val">Some</span>(<span class="ident">code</span>), .. }     <span class="op">=&gt;</span> { <span class="ident">s</span>.<span class="ident">keys_down</span>.<span class="ident">insert</span>(<span class="ident">code</span>); <span class="ident">m</span>.<span class="ident">key_pressed</span>(<span class="ident">s</span>, <span class="ident">code</span>); },
-			<span class="ident">Event</span>::<span class="ident">KeyUp</span> { <span class="ident">keycode</span>: <span class="prelude-val">Some</span>(<span class="ident">code</span>), .. }       <span class="op">=&gt;</span> { <span class="ident">s</span>.<span class="ident">keys_down</span>.<span class="ident">remove</span>(<span class="kw-2">&amp;</span><span class="ident">code</span>); <span class="ident">m</span>.<span class="ident">key_released</span>(<span class="ident">s</span>, <span class="ident">code</span>); },
-			<span class="ident">Event</span>::<span class="ident">MouseMotion</span> { .. }                      <span class="op">=&gt;</span> { <span class="ident">handle_mouse_moved</span>(<span class="ident">s</span>, <span class="ident">m</span>, <span class="ident">event</span>); },
-			<span class="ident">Event</span>::<span class="ident">MouseButtonDown</span> { <span class="ident">mouse_btn</span>, <span class="ident">x</span>, <span class="ident">y</span>, .. } <span class="op">=&gt;</span> { <span class="ident">m</span>.<span class="ident">mouse_pressed</span>(<span class="ident">s</span>, <span class="ident">mouse_btn</span>, <span class="ident">x</span>, <span class="ident">y</span>); },
-			<span class="ident">Event</span>::<span class="ident">MouseButtonUp</span> { <span class="ident">mouse_btn</span>, <span class="ident">x</span>, <span class="ident">y</span>, .. }   <span class="op">=&gt;</span> { <span class="ident">m</span>.<span class="ident">mouse_released</span>(<span class="ident">s</span>, <span class="ident">mouse_btn</span>, <span class="ident">x</span>, <span class="ident">y</span>); },
-			_ <span class="op">=&gt;</span> {}
+			<span class="ident">Event</span>::<span class="ident">Quit</span> { .. }                             <span class="op">=</span><span class="op">&gt;</span> { <span class="ident">s</span>.<span class="ident">quit</span>(); }
+			<span class="ident">Event</span>::<span class="ident">KeyDown</span> { <span class="ident">keycode</span>: <span class="prelude-val">Some</span>(<span class="ident">code</span>), .. }     <span class="op">=</span><span class="op">&gt;</span> { <span class="ident">s</span>.<span class="ident">keys_down</span>.<span class="ident">insert</span>(<span class="ident">code</span>); <span class="ident">m</span>.<span class="ident">key_pressed</span>(<span class="ident">s</span>, <span class="ident">code</span>); },
+			<span class="ident">Event</span>::<span class="ident">KeyUp</span> { <span class="ident">keycode</span>: <span class="prelude-val">Some</span>(<span class="ident">code</span>), .. }       <span class="op">=</span><span class="op">&gt;</span> { <span class="ident">s</span>.<span class="ident">keys_down</span>.<span class="ident">remove</span>(<span class="kw-2">&amp;</span><span class="ident">code</span>); <span class="ident">m</span>.<span class="ident">key_released</span>(<span class="ident">s</span>, <span class="ident">code</span>); },
+			<span class="ident">Event</span>::<span class="ident">MouseMotion</span> { .. }                      <span class="op">=</span><span class="op">&gt;</span> { <span class="ident">handle_mouse_moved</span>(<span class="ident">s</span>, <span class="ident">m</span>, <span class="ident">event</span>); },
+			<span class="ident">Event</span>::<span class="ident">MouseButtonDown</span> { <span class="ident">mouse_btn</span>, <span class="ident">x</span>, <span class="ident">y</span>, .. } <span class="op">=</span><span class="op">&gt;</span> { <span class="ident">m</span>.<span class="ident">mouse_pressed</span>(<span class="ident">s</span>, <span class="ident">mouse_btn</span>, <span class="ident">x</span>, <span class="ident">y</span>); },
+			<span class="ident">Event</span>::<span class="ident">MouseButtonUp</span> { <span class="ident">mouse_btn</span>, <span class="ident">x</span>, <span class="ident">y</span>, .. }   <span class="op">=</span><span class="op">&gt;</span> { <span class="ident">m</span>.<span class="ident">mouse_released</span>(<span class="ident">s</span>, <span class="ident">mouse_btn</span>, <span class="ident">x</span>, <span class="ident">y</span>); },
+			<span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> {}
 		}
 	}
 }
@@ -751,8 +694,8 @@
 <span class="doccomment">/// subroutine of the handle_events, i.e. sub-subroutine of the main loop</span>
 <span class="kw">fn</span> <span class="ident">handle_mouse_moved</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">MainLoopMethods</span><span class="op">&gt;</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Sketch</span>, <span class="ident">m</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>, <span class="ident">event</span>: <span class="ident">Event</span>) {
 	<span class="kw">let</span> (<span class="ident">mstate</span>, <span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">xrel</span>, <span class="ident">yrel</span>) <span class="op">=</span> <span class="kw">match</span> <span class="ident">event</span> {
-		<span class="ident">Event</span>::<span class="ident">MouseMotion</span> { <span class="ident">mousestate</span>, <span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">xrel</span>, <span class="ident">yrel</span>, .. } <span class="op">=&gt;</span> (<span class="ident">mousestate</span>, <span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">xrel</span>, <span class="ident">yrel</span>),
-		_ <span class="op">=&gt;</span> { <span class="kw">return</span>; }
+		<span class="ident">Event</span>::<span class="ident">MouseMotion</span> { <span class="ident">mousestate</span>, <span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">xrel</span>, <span class="ident">yrel</span>, .. } <span class="op">=</span><span class="op">&gt;</span> (<span class="ident">mousestate</span>, <span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">xrel</span>, <span class="ident">yrel</span>),
+		<span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> { <span class="kw">return</span>; }
 	};
 
 	<span class="kw">if</span> <span class="ident">mstate</span>.<span class="ident">pressed_mouse_buttons</span>().<span class="ident">count</span>() <span class="op">&gt;</span> <span class="number">0</span> {
@@ -774,18 +717,18 @@
 
 	<span class="doccomment">/// called every frame inside the main loop</span>
 	<span class="kw">fn</span> <span class="ident">draw</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">_s</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Sketch</span>) {}
-	
-	<span class="doccomment">/// called inside the main loop on a KeyDown event </span>
+
+	<span class="doccomment">/// called inside the main loop on a KeyDown event</span>
 	<span class="doccomment">///</span>
 	<span class="doccomment">/// The default implementation quits the main loop when Escape is pressed.</span>
 	<span class="kw">fn</span> <span class="ident">key_pressed</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Sketch</span>, <span class="ident">code</span>: <span class="ident">Keycode</span>) {
 		<span class="kw">match</span> <span class="ident">code</span> {
-			<span class="ident">Keycode</span>::<span class="ident">Escape</span> <span class="op">=&gt;</span> { <span class="ident">s</span>.<span class="ident">quit</span>(); },
-			_ <span class="op">=&gt;</span> {}
+			<span class="ident">Keycode</span>::<span class="ident">Escape</span> <span class="op">=</span><span class="op">&gt;</span> { <span class="ident">s</span>.<span class="ident">quit</span>(); },
+			<span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> {}
 		}
 	}
 
-	<span class="doccomment">/// called inside the main loop on a KeyUp event </span>
+	<span class="doccomment">/// called inside the main loop on a KeyUp event</span>
 	<span class="kw">fn</span> <span class="ident">key_released</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">_s</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Sketch</span>, <span class="ident">_key</span>: <span class="ident">Keycode</span>) {}
 
 	<span class="doccomment">/// called inside the main loop on a MouseMotion event, if no MouseButton is pressed</span>
@@ -828,11 +771,11 @@
 
 
 <span class="kw">impl</span> <span class="ident">Sketch</span> {
-	
+
 	<span class="comment">/* general methods */</span>
 
 	<span class="doccomment">/// create a new sketch</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">width</span>: <span class="ident">u32</span>, <span class="ident">height</span>: <span class="ident">u32</span>, <span class="ident">title</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">width</span>: <span class="ident">u32</span>, <span class="ident">height</span>: <span class="ident">u32</span>, <span class="ident">title</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
 		<span class="kw">let</span> (<span class="ident">canvas</span>, <span class="ident">event_pump</span>, <span class="ident">image_context</span>) <span class="op">=</span> <span class="ident">init_sdl_subsystems</span>(<span class="ident">width</span>, <span class="ident">height</span>, <span class="ident">title</span>);
 		<span class="kw">let</span> <span class="ident">texture_creator</span> <span class="op">=</span> <span class="ident">canvas</span>.<span class="ident">texture_creator</span>();
 		<span class="ident">Sketch</span> {
@@ -858,25 +801,25 @@
 	}
 
 	<span class="doccomment">/// returns the width of the sketch in pixels</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">i32</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
 		<span class="self">self</span>.<span class="ident">width</span> <span class="kw">as</span> <span class="ident">i32</span>
 	}
 
 	<span class="doccomment">/// returns the height of the sketch in pixels</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">i32</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
 		<span class="self">self</span>.<span class="ident">height</span> <span class="kw">as</span> <span class="ident">i32</span>
 	}
-	
+
 	<span class="doccomment">/// returns the current framerate in frames per second</span>
 	<span class="doccomment">///</span>
 	<span class="doccomment">/// In the p5.js API there is one function as getter and setter, framerate(), which has an optional argument.</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_framerate</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">f32</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_framerate</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
 		<span class="self">self</span>.<span class="ident">fps_data</span>.<span class="ident">current_fps</span>
 	}
 
 	<span class="doccomment">/// sets the max. framerate in frames per second</span>
 	<span class="doccomment">///</span>
-	<span class="doccomment">/// max. setting 200 fps; </span>
+	<span class="doccomment">/// max. setting 200 fps;</span>
 	<span class="doccomment">/// In the p5.js API there is one function as getter and setter, framerate(), which has an optional argument.</span>
 	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_framerate</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">fps</span>: <span class="ident">u32</span>) {
 		<span class="self">self</span>.<span class="ident">fps_manager</span>.<span class="ident">set_framerate</span>(<span class="ident">fps</span>).<span class="ident">unwrap_or_else</span>( <span class="op">|</span><span class="ident">e</span><span class="op">|</span> { <span class="macro">eprintln</span><span class="macro">!</span>(<span class="string">&quot;SDL2-gfx set_framerate() failed. {}&quot;</span>, <span class="ident">e</span>); } );
@@ -916,20 +859,20 @@
 	<span class="comment">/* status information */</span>
 
 	<span class="doccomment">/// checks if the key with the provided keycode is currently pressed</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">key_is_down</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">code</span>: <span class="ident">Keycode</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">key_is_down</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">code</span>: <span class="ident">Keycode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
 		<span class="self">self</span>.<span class="ident">keys_down</span>.<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">code</span>)
 	}
 
 	<span class="doccomment">/// returns current x position of the mouse in pixel coordinates</span>
 	<span class="doccomment">///</span>
 	<span class="doccomment">/// In the p5.js API there are two state variables for this (mouseX and mouseY). If the mouse pointer is outside the sketch window, the function returns last position of the mouse inside the window(!)</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mouse_pos</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>) {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mouse_pos</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>) {
 		<span class="kw">let</span> <span class="ident">mstate</span> <span class="op">=</span> <span class="ident">MouseState</span>::<span class="ident">new</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">event_pump</span>);
 		(<span class="ident">mstate</span>.<span class="ident">x</span>(), <span class="ident">mstate</span>.<span class="ident">y</span>())
 	}
 
 	<span class="doccomment">/// checks if any mouse button is currently pressed</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mouse_is_pressed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mouse_is_pressed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
 		<span class="kw">let</span> <span class="ident">mstate</span> <span class="op">=</span> <span class="ident">MouseState</span>::<span class="ident">new</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">event_pump</span>);
 		<span class="ident">mstate</span>.<span class="ident">pressed_mouse_buttons</span>().<span class="ident">count</span>() <span class="op">&gt;</span> <span class="number">0</span>
 	}
@@ -1018,12 +961,12 @@
 	}
 
 	<span class="doccomment">/// converts parameters for rect() accroding to setting of rect_mode</span>
-	<span class="kw">fn</span> <span class="ident">rect_args</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>, <span class="ident">w</span>: <span class="ident">u32</span>, <span class="ident">h</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">u32</span>, <span class="ident">u32</span>) {
+	<span class="kw">fn</span> <span class="ident">rect_args</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>, <span class="ident">w</span>: <span class="ident">u32</span>, <span class="ident">h</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">u32</span>, <span class="ident">u32</span>) {
 		<span class="kw">match</span> <span class="self">self</span>.<span class="ident">rect_mode</span> {
-			<span class="ident">RectMode</span>::<span class="ident">CORNER</span>  <span class="op">=&gt;</span> (<span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">w</span>, <span class="ident">h</span>),
-			<span class="ident">RectMode</span>::<span class="ident">CORNERS</span> <span class="op">=&gt;</span> (<span class="ident">x</span>, <span class="ident">y</span>, (<span class="ident">w</span> <span class="kw">as</span> <span class="ident">i32</span> <span class="op">-</span> <span class="ident">x</span>).<span class="ident">abs</span>() <span class="kw">as</span> <span class="ident">u32</span>, (<span class="ident">h</span> <span class="kw">as</span> <span class="ident">i32</span> <span class="op">-</span> <span class="ident">y</span>).<span class="ident">abs</span>() <span class="kw">as</span> <span class="ident">u32</span>), <span class="comment">// TODO: What happens with negative and mixed up coordinates?</span>
-			<span class="ident">RectMode</span>::<span class="ident">CENTER</span>  <span class="op">=&gt;</span> ((<span class="ident">x</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">-</span> <span class="number">0.5</span><span class="kw-2">*</span><span class="ident">w</span> <span class="kw">as</span> <span class="ident">f32</span>) <span class="kw">as</span> <span class="ident">i32</span>, (<span class="ident">y</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">-</span> <span class="number">0.5</span><span class="kw-2">*</span><span class="ident">h</span> <span class="kw">as</span> <span class="ident">f32</span>) <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">w</span>, <span class="ident">h</span>),
-			<span class="ident">RectMode</span>::<span class="ident">RADIUS</span>  <span class="op">=&gt;</span> ((<span class="ident">x</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">-</span> <span class="number">0.5</span><span class="kw-2">*</span><span class="ident">w</span> <span class="kw">as</span> <span class="ident">f32</span>) <span class="kw">as</span> <span class="ident">i32</span>, (<span class="ident">y</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">-</span> <span class="number">0.5</span><span class="kw-2">*</span><span class="ident">h</span> <span class="kw">as</span> <span class="ident">f32</span>) <span class="kw">as</span> <span class="ident">i32</span>, <span class="number">2</span><span class="kw-2">*</span><span class="ident">w</span>, <span class="number">2</span><span class="kw-2">*</span><span class="ident">h</span>),
+			<span class="ident">RectMode</span>::<span class="ident">CORNER</span>  <span class="op">=</span><span class="op">&gt;</span> (<span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">w</span>, <span class="ident">h</span>),
+			<span class="ident">RectMode</span>::<span class="ident">CORNERS</span> <span class="op">=</span><span class="op">&gt;</span> (<span class="ident">x</span>, <span class="ident">y</span>, (<span class="ident">w</span> <span class="kw">as</span> <span class="ident">i32</span> <span class="op">-</span> <span class="ident">x</span>).<span class="ident">abs</span>() <span class="kw">as</span> <span class="ident">u32</span>, (<span class="ident">h</span> <span class="kw">as</span> <span class="ident">i32</span> <span class="op">-</span> <span class="ident">y</span>).<span class="ident">abs</span>() <span class="kw">as</span> <span class="ident">u32</span>), <span class="comment">// TODO: What happens with negative and mixed up coordinates?</span>
+			<span class="ident">RectMode</span>::<span class="ident">CENTER</span>  <span class="op">=</span><span class="op">&gt;</span> ((<span class="ident">x</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">-</span> <span class="number">0.5</span><span class="kw-2">*</span><span class="ident">w</span> <span class="kw">as</span> <span class="ident">f32</span>) <span class="kw">as</span> <span class="ident">i32</span>, (<span class="ident">y</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">-</span> <span class="number">0.5</span><span class="kw-2">*</span><span class="ident">h</span> <span class="kw">as</span> <span class="ident">f32</span>) <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">w</span>, <span class="ident">h</span>),
+			<span class="ident">RectMode</span>::<span class="ident">RADIUS</span>  <span class="op">=</span><span class="op">&gt;</span> ((<span class="ident">x</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">-</span> <span class="number">0.5</span><span class="kw-2">*</span><span class="ident">w</span> <span class="kw">as</span> <span class="ident">f32</span>) <span class="kw">as</span> <span class="ident">i32</span>, (<span class="ident">y</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">-</span> <span class="number">0.5</span><span class="kw-2">*</span><span class="ident">h</span> <span class="kw">as</span> <span class="ident">f32</span>) <span class="kw">as</span> <span class="ident">i32</span>, <span class="number">2</span><span class="kw-2">*</span><span class="ident">w</span>, <span class="number">2</span><span class="kw-2">*</span><span class="ident">h</span>),
 		}
 	}
 
@@ -1046,7 +989,7 @@
 	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">polygon</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">vx</span>: <span class="kw-2">&amp;</span>[<span class="ident">i32</span>], <span class="ident">vy</span>: <span class="kw-2">&amp;</span>[<span class="ident">i32</span>]) {
 
 		<span class="comment">// check if coordinates slices are same length and &gt; 0</span>
-		<span class="kw">if</span> <span class="ident">vx</span>.<span class="ident">len</span>() <span class="op">!=</span> <span class="ident">vy</span>.<span class="ident">len</span>() {
+		<span class="kw">if</span> <span class="ident">vx</span>.<span class="ident">len</span>() <span class="op">!</span><span class="op">=</span> <span class="ident">vy</span>.<span class="ident">len</span>() {
 			<span class="macro">eprintln</span><span class="macro">!</span>(<span class="string">&quot;Error drawing polygon: unequal number of coordinates ({}/{})&quot;</span>, <span class="ident">vx</span>.<span class="ident">len</span>(), <span class="ident">vy</span>.<span class="ident">len</span>());
 			<span class="kw">return</span>;
 		}
@@ -1065,7 +1008,7 @@
 			}
 			<span class="comment">// draw fill with SDL2-gfx filled_polygon()</span>
 			<span class="self">self</span>.<span class="ident">canvas</span>.<span class="ident">filled_polygon</span>(<span class="kw-2">&amp;</span><span class="ident">vx16</span>, <span class="kw-2">&amp;</span><span class="ident">vy16</span>, <span class="ident">c</span>).<span class="ident">unwrap_or_else</span>( <span class="op">|</span><span class="ident">e</span><span class="op">|</span> { <span class="macro">eprintln</span><span class="macro">!</span>(<span class="string">&quot;SDL-gfx filled_polygon() failed. {}&quot;</span>, <span class="ident">e</span>); } );
-			<span class="kw">if</span> <span class="self">self</span>.<span class="ident">smooth</span> <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">stroke_color</span>.<span class="ident">is_none</span>() {
+			<span class="kw">if</span> <span class="self">self</span>.<span class="ident">smooth</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">stroke_color</span>.<span class="ident">is_none</span>() {
 				<span class="self">self</span>.<span class="ident">canvas</span>.<span class="ident">aa_polygon</span>(<span class="kw-2">&amp;</span><span class="ident">vx16</span>, <span class="kw-2">&amp;</span><span class="ident">vy16</span>, <span class="ident">c</span>).<span class="ident">unwrap_or_else</span>( <span class="op">|</span><span class="ident">e</span><span class="op">|</span> { <span class="macro">eprintln</span><span class="macro">!</span>(<span class="string">&quot;SDL-gfx aa_polygon() failed. {}&quot;</span>, <span class="ident">e</span>); } );
 			}
 		}
@@ -1081,7 +1024,7 @@
 	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">triangle</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">x1</span>: <span class="ident">i32</span>, <span class="ident">y1</span>: <span class="ident">i32</span>, <span class="ident">x2</span>: <span class="ident">i32</span>, <span class="ident">y2</span>: <span class="ident">i32</span>, <span class="ident">x3</span>: <span class="ident">i32</span>, <span class="ident">y3</span>: <span class="ident">i32</span>) {
 		<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">c</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">fill_color</span> {
 			<span class="self">self</span>.<span class="ident">canvas</span>.<span class="ident">filled_trigon</span>(<span class="ident">x1</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">y1</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">x2</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">y2</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">x3</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">y3</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">c</span>).<span class="ident">unwrap_or_else</span>( <span class="op">|</span><span class="ident">e</span><span class="op">|</span> { <span class="macro">eprintln</span><span class="macro">!</span>(<span class="string">&quot;SDL-gfx filled_trigon() failed. {}&quot;</span>, <span class="ident">e</span>); } );
-			<span class="kw">if</span> <span class="self">self</span>.<span class="ident">smooth</span> <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">stroke_color</span>.<span class="ident">is_none</span>() {
+			<span class="kw">if</span> <span class="self">self</span>.<span class="ident">smooth</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">stroke_color</span>.<span class="ident">is_none</span>() {
 				<span class="self">self</span>.<span class="ident">canvas</span>.<span class="ident">aa_trigon</span>(<span class="ident">x1</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">y1</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">x2</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">y2</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">x3</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">y3</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">c</span>).<span class="ident">unwrap_or_else</span>( <span class="op">|</span><span class="ident">e</span><span class="op">|</span> { <span class="macro">eprintln</span><span class="macro">!</span>(<span class="string">&quot;SDL-gfx aa_trigon() failed. {}&quot;</span>, <span class="ident">e</span>); } );
 			}
 		}
@@ -1138,7 +1081,7 @@
 	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">circle</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>, <span class="ident">r</span>: <span class="ident">u32</span>) {
 		<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">c</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">fill_color</span> {
 			<span class="self">self</span>.<span class="ident">canvas</span>.<span class="ident">filled_circle</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">y</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">r</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">c</span>).<span class="ident">unwrap_or_else</span>( <span class="op">|</span><span class="ident">e</span><span class="op">|</span> { <span class="macro">eprintln</span><span class="macro">!</span>(<span class="string">&quot;SDL-gfx filled_circle() failed. {}&quot;</span>, <span class="ident">e</span>); } );
-			<span class="kw">if</span> <span class="self">self</span>.<span class="ident">smooth</span> <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">stroke_color</span>.<span class="ident">is_none</span>() {
+			<span class="kw">if</span> <span class="self">self</span>.<span class="ident">smooth</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">stroke_color</span>.<span class="ident">is_none</span>() {
 				<span class="self">self</span>.<span class="ident">canvas</span>.<span class="ident">aa_circle</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">y</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">r</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">c</span>).<span class="ident">unwrap_or_else</span>( <span class="op">|</span><span class="ident">e</span><span class="op">|</span> { <span class="macro">eprintln</span><span class="macro">!</span>(<span class="string">&quot;SDL-gfx aa_circle() failed. {}&quot;</span>, <span class="ident">e</span>); } );
 			}
 		}
@@ -1155,7 +1098,7 @@
 	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ellipse</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>, <span class="ident">w</span>: <span class="ident">u32</span>, <span class="ident">h</span>: <span class="ident">u32</span>) {
 		<span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">c</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">fill_color</span> {
 			<span class="self">self</span>.<span class="ident">canvas</span>.<span class="ident">filled_ellipse</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">y</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">w</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">h</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">c</span>).<span class="ident">unwrap_or_else</span>( <span class="op">|</span><span class="ident">e</span><span class="op">|</span> { <span class="macro">eprintln</span><span class="macro">!</span>(<span class="string">&quot;SDL-gfx filled_ellipse() failed. {}&quot;</span>, <span class="ident">e</span>); } );
-			<span class="kw">if</span> <span class="self">self</span>.<span class="ident">smooth</span> <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">stroke_color</span>.<span class="ident">is_none</span>() {
+			<span class="kw">if</span> <span class="self">self</span>.<span class="ident">smooth</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">stroke_color</span>.<span class="ident">is_none</span>() {
 				<span class="self">self</span>.<span class="ident">canvas</span>.<span class="ident">aa_ellipse</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">y</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">w</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">h</span> <span class="kw">as</span> <span class="ident">i16</span>, <span class="ident">c</span>).<span class="ident">unwrap_or_else</span>( <span class="op">|</span><span class="ident">e</span><span class="op">|</span> { <span class="macro">eprintln</span><span class="macro">!</span>(<span class="string">&quot;SDL-gfx aa_ellipse() failed. {}&quot;</span>, <span class="ident">e</span>); } );
 			}
 		}
@@ -1169,9 +1112,9 @@
 	}
 
 	<span class="comment">/* draw images */</span>
-	
+
 	<span class="doccomment">/// loads an image from file (PNG or JPG)</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load_image</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">filename</span>: <span class="kw-2">&amp;</span><span class="ident">Path</span>) <span class="op">-&gt;</span> <span class="ident">Image</span> {
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load_image</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">filename</span>: <span class="kw-2">&amp;</span><span class="ident">Path</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Image</span> {
 		<span class="kw">let</span> <span class="ident">surf</span> <span class="op">=</span> <span class="ident">Surface</span>::<span class="ident">from_file</span>(<span class="ident">filename</span>).<span class="ident">expect</span>(<span class="string">&quot;Error loading image. Abort.&quot;</span>);
 		<span class="self">self</span>.<span class="ident">texture_creator</span>.<span class="ident">create_texture_from_surface</span>(<span class="ident">surf</span>).<span class="ident">expect</span>(<span class="string">&quot;Error converting image to texture. Abort.&quot;</span>)
 	}
@@ -1196,35 +1139,35 @@
 	}
 
 	<span class="doccomment">/// converts parameters for image_part() accroding to setting of image_mode</span>
-	<span class="kw">fn</span> <span class="ident">image_args</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">_sx</span>: <span class="ident">i32</span>, <span class="ident">_sy</span>: <span class="ident">i32</span>, <span class="ident">sw</span>: <span class="ident">u32</span>, <span class="ident">sh</span>: <span class="ident">u32</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>, <span class="ident">width</span>: <span class="ident">u32</span>, <span class="ident">height</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">u32</span>, <span class="ident">u32</span>) {
-		
+	<span class="kw">fn</span> <span class="ident">image_args</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">_sx</span>: <span class="ident">i32</span>, <span class="ident">_sy</span>: <span class="ident">i32</span>, <span class="ident">sw</span>: <span class="ident">u32</span>, <span class="ident">sh</span>: <span class="ident">u32</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>, <span class="ident">width</span>: <span class="ident">u32</span>, <span class="ident">height</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>, <span class="ident">u32</span>, <span class="ident">u32</span>) {
+
 		<span class="comment">// handle w and/or h == 0</span>
 		<span class="kw">let</span> <span class="ident">w</span>;
 		<span class="kw">let</span> <span class="ident">h</span>;
-		<span class="kw">if</span> <span class="ident">width</span> <span class="op">==</span> <span class="number">0</span> <span class="op">&amp;&amp;</span> (<span class="self">self</span>.<span class="ident">image_mode</span> <span class="op">==</span> <span class="ident">ImageMode</span>::<span class="ident">CORNER</span> <span class="op">||</span> <span class="self">self</span>.<span class="ident">image_mode</span> <span class="op">==</span> <span class="ident">ImageMode</span>::<span class="ident">CENTER</span>) {
+		<span class="kw">if</span> <span class="ident">width</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> (<span class="self">self</span>.<span class="ident">image_mode</span> <span class="op">=</span><span class="op">=</span> <span class="ident">ImageMode</span>::<span class="ident">CORNER</span> <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">image_mode</span> <span class="op">=</span><span class="op">=</span> <span class="ident">ImageMode</span>::<span class="ident">CENTER</span>) {
 			<span class="ident">w</span> <span class="op">=</span> <span class="ident">sw</span>;
 		} <span class="kw">else</span> {
 			<span class="ident">w</span> <span class="op">=</span> <span class="ident">width</span>;
 		}
-		<span class="kw">if</span> <span class="ident">height</span> <span class="op">==</span> <span class="number">0</span> <span class="op">&amp;&amp;</span> (<span class="self">self</span>.<span class="ident">image_mode</span> <span class="op">==</span> <span class="ident">ImageMode</span>::<span class="ident">CORNER</span> <span class="op">||</span> <span class="self">self</span>.<span class="ident">image_mode</span> <span class="op">==</span> <span class="ident">ImageMode</span>::<span class="ident">CENTER</span>) {
+		<span class="kw">if</span> <span class="ident">height</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> (<span class="self">self</span>.<span class="ident">image_mode</span> <span class="op">=</span><span class="op">=</span> <span class="ident">ImageMode</span>::<span class="ident">CORNER</span> <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">image_mode</span> <span class="op">=</span><span class="op">=</span> <span class="ident">ImageMode</span>::<span class="ident">CENTER</span>) {
 			<span class="ident">h</span> <span class="op">=</span> <span class="ident">sh</span>;
 		} <span class="kw">else</span> {
 			<span class="ident">h</span> <span class="op">=</span> <span class="ident">height</span>;
 		}
-		
+
 		<span class="comment">// handle image mode</span>
 		<span class="kw">match</span> <span class="self">self</span>.<span class="ident">image_mode</span> {
-			<span class="ident">ImageMode</span>::<span class="ident">CORNER</span>  <span class="op">=&gt;</span> (<span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">w</span>, <span class="ident">h</span>),
-			<span class="ident">ImageMode</span>::<span class="ident">CORNERS</span> <span class="op">=&gt;</span> (<span class="ident">x</span>, <span class="ident">y</span>, (<span class="ident">w</span> <span class="kw">as</span> <span class="ident">i32</span> <span class="op">-</span> <span class="ident">x</span>).<span class="ident">abs</span>() <span class="kw">as</span> <span class="ident">u32</span>, (<span class="ident">h</span> <span class="kw">as</span> <span class="ident">i32</span> <span class="op">-</span> <span class="ident">y</span>).<span class="ident">abs</span>() <span class="kw">as</span> <span class="ident">u32</span>), <span class="comment">// TODO: What happens with negative and mixed up coordinates?</span>
-			<span class="ident">ImageMode</span>::<span class="ident">CENTER</span>  <span class="op">=&gt;</span> ((<span class="ident">x</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">-</span> <span class="number">0.5</span><span class="kw-2">*</span><span class="ident">w</span> <span class="kw">as</span> <span class="ident">f32</span>) <span class="kw">as</span> <span class="ident">i32</span>, (<span class="ident">y</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">-</span> <span class="number">0.5</span><span class="kw-2">*</span><span class="ident">h</span> <span class="kw">as</span> <span class="ident">f32</span>) <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">w</span>, <span class="ident">h</span>),
+			<span class="ident">ImageMode</span>::<span class="ident">CORNER</span>  <span class="op">=</span><span class="op">&gt;</span> (<span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">w</span>, <span class="ident">h</span>),
+			<span class="ident">ImageMode</span>::<span class="ident">CORNERS</span> <span class="op">=</span><span class="op">&gt;</span> (<span class="ident">x</span>, <span class="ident">y</span>, (<span class="ident">w</span> <span class="kw">as</span> <span class="ident">i32</span> <span class="op">-</span> <span class="ident">x</span>).<span class="ident">abs</span>() <span class="kw">as</span> <span class="ident">u32</span>, (<span class="ident">h</span> <span class="kw">as</span> <span class="ident">i32</span> <span class="op">-</span> <span class="ident">y</span>).<span class="ident">abs</span>() <span class="kw">as</span> <span class="ident">u32</span>), <span class="comment">// TODO: What happens with negative and mixed up coordinates?</span>
+			<span class="ident">ImageMode</span>::<span class="ident">CENTER</span>  <span class="op">=</span><span class="op">&gt;</span> ((<span class="ident">x</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">-</span> <span class="number">0.5</span><span class="kw-2">*</span><span class="ident">w</span> <span class="kw">as</span> <span class="ident">f32</span>) <span class="kw">as</span> <span class="ident">i32</span>, (<span class="ident">y</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">-</span> <span class="number">0.5</span><span class="kw-2">*</span><span class="ident">h</span> <span class="kw">as</span> <span class="ident">f32</span>) <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">w</span>, <span class="ident">h</span>),
 		}
 	}
 
 	<span class="doccomment">/// converts radians to degrees if AngleMode is set accordingly</span>
-	<span class="kw">fn</span> <span class="ident">angle_arg</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">a</span>: <span class="ident">f32</span>) <span class="op">-&gt;</span> <span class="ident">f32</span> {
+	<span class="kw">fn</span> <span class="ident">angle_arg</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">a</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
 		<span class="kw">match</span> <span class="self">self</span>.<span class="ident">angle_mode</span> {
-			<span class="ident">AngleMode</span>::<span class="ident">RADIANS</span> <span class="op">=&gt;</span> <span class="ident">utils</span>::<span class="ident">rad_to_deg</span>(<span class="ident">a</span>),
-			<span class="ident">AngleMode</span>::<span class="ident">DEGREES</span> <span class="op">=&gt;</span> <span class="ident">a</span>,
+			<span class="ident">AngleMode</span>::<span class="ident">RADIANS</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">utils</span>::<span class="ident">rad_to_deg</span>(<span class="ident">a</span>),
+			<span class="ident">AngleMode</span>::<span class="ident">DEGREES</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">a</span>,
 		}
 	}
 }
@@ -1265,7 +1208,7 @@
 
 
 <span class="doccomment">/// initializes the necessary SDL2 subsystems and returns a SDL2 window/renderer and event pump</span>
-<span class="kw">fn</span> <span class="ident">init_sdl_subsystems</span>(<span class="ident">width</span>: <span class="ident">u32</span>, <span class="ident">height</span>: <span class="ident">u32</span>, <span class="ident">title</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> (<span class="ident">Canvas</span><span class="op">&lt;</span><span class="ident">sdl2</span>::<span class="ident">video</span>::<span class="ident">Window</span><span class="op">&gt;</span>, <span class="ident">EventPump</span>, <span class="ident">Sdl2ImageContext</span>) {
+<span class="kw">fn</span> <span class="ident">init_sdl_subsystems</span>(<span class="ident">width</span>: <span class="ident">u32</span>, <span class="ident">height</span>: <span class="ident">u32</span>, <span class="ident">title</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">Canvas</span><span class="op">&lt;</span><span class="ident">sdl2</span>::<span class="ident">video</span>::<span class="ident">Window</span><span class="op">&gt;</span>, <span class="ident">EventPump</span>, <span class="ident">Sdl2ImageContext</span>) {
 	<span class="kw">let</span> <span class="ident">sdl_context</span> <span class="op">=</span> <span class="ident">sdl2</span>::<span class="ident">init</span>().<span class="ident">expect</span>(<span class="string">&quot;SDL2 init() failed. Abort.&quot;</span>);
 	<span class="kw">let</span> <span class="ident">video_subsystem</span> <span class="op">=</span> <span class="ident">sdl_context</span>.<span class="ident">video</span>().<span class="ident">expect</span>(<span class="string">&quot;Initialization of SDL2 video subsystem failed. Abort.&quot;</span>);
 	<span class="kw">let</span> <span class="ident">window</span> <span class="op">=</span> <span class="ident">video_subsystem</span>.<span class="ident">window</span>(<span class="ident">title</span>, <span class="ident">width</span>, <span class="ident">height</span>)
@@ -1291,7 +1234,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">FPSData</span> {
-	<span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">update_interval</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+	<span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">update_interval</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
 		<span class="ident">FPSData</span> {
 			<span class="ident">update_interval</span>,
 			<span class="ident">print_fps</span>: <span class="ident">env</span>::<span class="ident">var</span>(<span class="string">&quot;SDL2SKETCH_PRINTFPS&quot;</span>).<span class="ident">is_ok</span>(),
@@ -1312,74 +1255,9 @@
 				<span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;FPS: {:.2}&quot;</span>, <span class="self">self</span>.<span class="ident">current_fps</span>);
 			}
 		} <span class="kw">else</span> {
-			<span class="self">self</span>.<span class="ident">num_frames</span> <span class="op">+=</span> <span class="number">1</span>;
+			<span class="self">self</span>.<span class="ident">num_frames</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
 		}
 	}
 }
-
-</pre>
-</section>
-    <section id='search' class="content hidden"></section>
-
-    <section class="footer"></section>
-
-    <aside id="help" class="hidden">
-        <div>
-            <h1 class="hidden">Help</h1>
-
-            <div class="shortcuts">
-                <h2>Keyboard Shortcuts</h2>
-
-                <dl>
-                    <dt><kbd>?</kbd></dt>
-                    <dd>Show this help dialog</dd>
-                    <dt><kbd>S</kbd></dt>
-                    <dd>Focus the search field</dd>
-                    <dt><kbd>↑</kbd></dt>
-                    <dd>Move up in search results</dd>
-                    <dt><kbd>↓</kbd></dt>
-                    <dd>Move down in search results</dd>
-                    <dt><kbd>↹</kbd></dt>
-                    <dd>Switch tab</dd>
-                    <dt><kbd>&#9166;</kbd></dt>
-                    <dd>Go to active search result</dd>
-                    <dt><kbd>+</kbd></dt>
-                    <dd>Expand all sections</dd>
-                    <dt><kbd>-</kbd></dt>
-                    <dd>Collapse all sections</dd>
-                </dl>
-            </div>
-
-            <div class="infos">
-                <h2>Search Tricks</h2>
-
-                <p>
-                    Prefix searches with a type followed by a colon (e.g.
-                    <code>fn:</code>) to restrict the search to a given type.
-                </p>
-
-                <p>
-                    Accepted types are: <code>fn</code>, <code>mod</code>,
-                    <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>type</code>, <code>macro</code>,
-                    and <code>const</code>.
-                </p>
-
-                <p>
-                    Search functions by type signature (e.g.
-                    <code>vec -> usize</code> or <code>* -> vec</code>)
-                </p>
-            </div>
-        </div>
-    </aside>
-
-    
-
-    <script>
-        window.rootPath = "../../";
-        window.currentCrate = "sdl2sketch";
-    </script>
-    <script src="../../main.js"></script>
-    <script defer src="../../search-index.js"></script>
-</body>
-</html>
+</pre></div>
+</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "sdl2sketch";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>
